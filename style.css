@@ -133,8 +133,7 @@ body {
 .site-content {
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 5px;
+    margin: 5px auto;
     box-sizing: border-box;
 }
 
@@ -292,7 +291,6 @@ article {
 
 .back-button {
     display: block;
-    margin: 20px auto;
     padding: 10px 20px;
     background-color: #0073aa;
     color: #fff;

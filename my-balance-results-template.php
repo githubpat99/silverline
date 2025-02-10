@@ -47,7 +47,7 @@ get_header();
     }
     ?>
 
-    <a href="<?php echo home_url('/next-balance/'); ?>" class="back-button">Private Bilanz</a>
+    <a href="<?php echo home_url('/pure-gutenberg-bilanz/'); ?>" class="back-button">Private Bilanz</a>
 </div>
 
 <div class="chart-container" id="googleChart"></div>

@@ -27,19 +27,19 @@ get_header();
 <!-- /wp:spacer -->
 
 <!-- wp:heading {"level":4,"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
-<h4 class="wp-block-heading has-text-color has-link-color" style="color:#182155"><strong>Reicht mein Altersguthaben um meinen Lebensstandard halten zu können? </strong></h4>
+<p class="has-text-color has-link-color" style="color:#182155"><strong>&#8226 Reicht mein Altersguthaben um meinen Lebensstandard halten zu können? </strong></p>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#182155"><strong>Kann ich in meinem Einfamilienhaus bleiben? </strong></p>
+<p class="has-text-color has-link-color" style="color:#182155"><strong>&#8226 Kann ich in meinem Einfamilienhaus bleiben? </strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#182155"><strong>Wie sehen meine persönlichen Finanzen aktuell und in Zukunft aus?</strong></p>
+<p class="has-text-color has-link-color" style="color:#182155"><strong>&#8226 Wie sehen meine persönlichen Finanzen aktuell und in Zukunft aus?</strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:spacer -->
-<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<div style="height:70px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
 <div class="wp-block-buttons">

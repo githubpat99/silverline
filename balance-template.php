@@ -1,12 +1,21 @@
-<h2 class="wp-fin-title">Deine Finanzübersicht</h2>
+<?php
+/*
+Template Name: Balance Template
+*/
+
+get_header();
+?>
+
+<div class="site-content">
+</div>
 
 <div class="summary-row">
-    <div class="summary-item">
-        <h2>Aktiven</h2>
+    <div class="summary-item-aktiven" style="color:#0b3b66;background:linear-gradient(134deg,rgb(202,248,128) 32%,rgb(113,206,126) 85%)">
+        <h4 class="summary-title">Aktiven</h4>
         <span id="total-aktiven" class="total-value">45'000</span>
     </div>
-    <div class="summary-item">
-        <h2>Passiven</h2>
+    <div class="summary-item-passiven" style="color:#50528c;background:linear-gradient(135deg,rgb(254,205,165) 62%,rgb(254,45,45) 100%,rgb(107,0,62) 100%)">
+        <h4 class="summary-title">Passiven</h4>
         <span id="total-passiven" class="total-value">45'000</span>
     </div>
 </div>
@@ -25,15 +34,15 @@
                 <tbody>
                     <tr>
                         <td><span class="table-heading">Bankkonto</span></td>
-                        <td><input type="text" placeholder="Wert 1" value="1.000" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 1" value="12.000" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Depot</span></td>
-                        <td><input type="text" placeholder="Wert 2" value="2.000" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 2" value="25.000" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Weitere</span></td>
-                        <td><input type="text" placeholder="Wert 3" value="1.450" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 3" value="1.500" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
                     </tr>
                 </tbody>
             </table>
@@ -54,15 +63,15 @@
                 <tbody>
                     <tr>
                         <td><span class="table-heading">Immobilien</span></td>
-                        <td><input type="text" placeholder="Wert 4" value="3.000" class="formatted-input" data-group="langfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 4" value="850.000" class="formatted-input" data-group="langfristig" maxlength="11"></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Private Vorsorge</span></td>
-                        <td><input type="text" placeholder="Wert 5" value="4.000" class="formatted-input" data-group="langfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 5" value="60.000" class="formatted-input" data-group="langfristig" maxlength="11"></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Alterguthaben</span></td>
-                        <td><input type="text" placeholder="Wert 6" value="5.000" class="formatted-input" data-group="langfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 6" value="750.000" class="formatted-input" data-group="langfristig" maxlength="11"></td>
                     </tr>
                 </tbody>
             </table> 
@@ -112,11 +121,11 @@
                 <tbody>
                     <tr>
                         <td><span class="table-heading">Hypotheken</span></td>
-                        <td><input type="text" placeholder="Wert 10" value="2.000" class="formatted-input" data-group="langfristig-passiven" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 10" value="400.000" class="formatted-input" data-group="langfristig-passiven" maxlength="11"></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Darlehen</span></td>
-                        <td><input type="text" placeholder="Wert 11" value="2.500" class="formatted-input" data-group="langfristig-passiven" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 11" value="0" class="formatted-input" data-group="langfristig-passiven" maxlength="11"></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Weitere</span></td>
@@ -151,29 +160,35 @@
         display: flex;
         justify-content: space-between;
         background-color: #f0f0f0;
-        padding: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
     }
-    .summary-item {
+    .summary-title {
+        margin: 5px;
+    }
+    .summary-item-aktiven {
         flex: 1;
         text-align: center;
-        padding: 10px;
-        background-color: #e0e0e0;
-        margin: 0 10px;
+        background-color: rgba(113, 206, 126);
+        border-radius: 5px;
+    }
+    .summary-item-passiven {
+        flex: 1;
+        text-align: center;
+        background-color: rgb(231, 119, 119);
         border-radius: 5px;
     }
     .summary-item h2 {
         margin: 0;
     }
     .formatted-input {
-        background: rgba(124, 145, 192, 0.9);
         border: none;
         color: rgb(24, 18, 104);
         padding: 5px;
         box-sizing: border-box;
-        max-width: 120px; /* Adjust the width as needed */
+        width: 160px; /* Adjust the width as needed */
+        height: 30px;
+        font-size: 16px;
         text-align: right;
-        font-size: large;
     }
     td, th, h2, h4 {
         padding-left: 10px;
@@ -296,3 +311,7 @@
         inputs.forEach(input => updateTotal(input));
     });
 </script>
+
+<?php
+get_footer();
+?>
