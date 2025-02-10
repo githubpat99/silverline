@@ -1,0 +1,328 @@
+h4,
+h5,
+h6,
+.menu {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #073979;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 10;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header Styles */
+.site-header {
+    border-bottom: 1px solid #000;
+    padding: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.site-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: .25rem;
+    line-height: 1;
+}
+
+.site-title a {
+    text-decoration: none;
+}
+
+.site-description {
+    margin-top: 0;
+    color: #8e8e8e;
+}
+
+/* Menu toggle button styles */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* Navigation menu styles */
+.nav-menu {
+    display: flex; /* Ensure the nav menu is displayed on larger screens */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li {
+    margin-right: 20px;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: #696969;
+}
+
+.nav-menu li a:hover {
+    text-decoration: underline;
+    color: #000;
+}
+
+/* Styles for small screens */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+        padding-right: 10px;
+    }
+  
+/* Only hide the top-level `.nav-menu`, not all `.nav-menu` elements */
+    .site-header > .nav-menu {
+        display: none;
+    /*    position: sticky;  TEST PIN */
+        top: 60px; /* Adjust this value if needed */
+        left: 0;
+        width: 100%;
+        background-color: white;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+        text-align: center;
+    }
+
+    /* Show menu when active */
+    .site-header > .nav-menu.active {
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    /* Ensure full-width links and proper spacing */
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+        padding: 10px 10px;
+    }
+
+    .nav-menu li a {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        color: #073979;
+        text-decoration: none;
+    }
+
+    .nav-menu li a:hover {
+        background-color: #f0f0f0;
+    }
+}
+
+
+/* Content Styles */
+.site-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+article {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 280px;
+    float: left;
+    list-style: none;
+    margin-top: 2em;
+    font-size: 14px;
+}
+
+.widgettitle {
+    border-top: 2px solid;
+    border-bottom: 1px solid #ccc;
+    padding: .25rem 0;
+    font-size: 1.25rem;
+}
+
+/* Form Styles */
+.form-tables {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Fixed space between form tables */
+}
+
+.form-table {
+    width: calc(50% - 20px); /* Adjust width to account for gap */
+    background-color: #f4f4f4;
+}
+
+.form-table.th-activa {
+    border: 2px solid green; /* Green border for Aktiva table */
+    border-radius: 6px;
+}
+
+.form-table.th-passiva {
+    border: 2px solid red; /* Red border for Passiva table */
+    border-radius: 6px;
+}
+
+.form-table th {
+    text-align: left;
+    padding: 10px;
+}
+
+.form-table td {
+    width: 100%;
+    padding-left: 2px;
+    border: none;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: .5rem;
+    width: 100%;
+}
+
+.form-group label {
+    padding-left: 5px;
+    font-weight: bold;
+    width: 150px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    flex: 1;
+    padding: .5rem;
+    font-size: 18px;
+    text-align: right;
+    background-color: white;
+    border: none;
+}
+
+.site-content form button {
+    padding: 1rem 1.5rem; /* Increase padding for bigger button */
+    margin: 10px;
+    font-size: 1.2rem; /* Increase text size */
+    background-color: #0073aa;
+    color: #fff;
+    border: none;
+    border-radius: 6px; /* Slightly larger rounded corners */
+    cursor: pointer;
+    min-width: 150px; /* Ensure a reasonable minimum width */
+}
+
+.site-content form button:hover {
+    background-color: #005177;
+}
+
+@media (max-width: 768px) {
+    .form-tables {
+        flex-direction: column; /* Stack tables vertically on small screens */
+    }
+
+    .form-table {
+        width: 100%; /* Full width for each table on small screens */
+    }
+
+    .form-group {
+        flex-direction: column; /* Stack label and input vertically */
+        align-items: flex-start;
+    }
+
+    .form-group label {
+        width: 100%; /* Full width for label */
+        margin-bottom: .5rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"] {
+        width: 90%; /* Full width for input */
+        margin-right: 0;
+    }
+}
+
+.results-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-key {
+    font-weight: bold;
+    color: #555;
+}
+
+.result-value {
+    color: #0073aa;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+}
+
+.back-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #0073aa;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #005177;
+}
+
+.chart-container {
+    margin-top: 20px;
+    padding: 20px;
+    width: 100%;
+    height: 300px; /* Default height for larger screens */
+}
+
+@media screen and (max-width: 768px) {
+    .chart-container {
+        height: 200px; /* Smaller height for tablets and smaller devices */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .chart-container {
+        margin-top: 0px;
+        width: 80%;
+        height: 80px; /* Even smaller height for mobile devices */
+    }
+}
