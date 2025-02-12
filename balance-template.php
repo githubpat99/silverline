@@ -4,6 +4,34 @@ Template Name: Balance Template
 */
 
 get_header();
+
+// Get the current user ID
+$user_id = get_current_user_id();
+
+// Fetch stored values from the database
+global $wpdb;
+$table_name = $wpdb->prefix . 'kpis';
+$stored_values = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE user_id = %d", $user_id), ARRAY_A);
+
+// Set default values if no stored values are found
+$default_values = array(
+    'bank' => '12500',
+    'depot' => '25000',
+    'akfr' => '0',
+    'immo' => '850000',
+    'priv' => '35000',
+    'agh' => '680000',
+    'ccard' => '750',
+    'credit' => '1500',
+    'pkfr' => '0',
+    'hypo' => '480000',
+    'darlehen' => '0',
+    'plfr' => '2500',
+);
+
+// Merge stored values with default values
+$values = array_merge($default_values, $stored_values ? $stored_values : array());
+
 ?>
 
 <div class="site-content">
@@ -34,15 +62,15 @@ get_header();
                 <tbody>
                     <tr>
                         <td><span class="table-heading">Bankkonto</span></td>
-                        <td><input type="text" placeholder="Wert 1" value="12.000" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 1" value="<?php echo esc_attr($values['bank']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Depot</span></td>
-                        <td><input type="text" placeholder="Wert 2" value="25.000" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['depot']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Weitere</span></td>
-                        <td><input type="text" placeholder="Wert 3" value="1.500" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 3" value="<?php echo esc_attr($values['akfr']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
                     </tr>
                 </tbody>
             </table>
@@ -63,15 +91,15 @@ get_header();
                 <tbody>
                     <tr>
                         <td><span class="table-heading">Immobilien</span></td>
-                        <td><input type="text" placeholder="Wert 4" value="850.000" class="formatted-input" data-group="langfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 4" value="<?php echo esc_attr($values['immo']); ?>" class="formatted-input" data-group="langfristig" maxlength="11"></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Private Vorsorge</span></td>
-                        <td><input type="text" placeholder="Wert 5" value="60.000" class="formatted-input" data-group="langfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 5" value="<?php echo esc_attr($values['priv']); ?>" class="formatted-input" data-group="langfristig" maxlength="11"></td>
                     </tr>
                     <tr>
-                        <td><span class="table-heading">Alterguthaben</span></td>
-                        <td><input type="text" placeholder="Wert 6" value="750.000" class="formatted-input" data-group="langfristig" maxlength="11"></td>
+                        <td><span class="table-heading">Altersguthaben</span></td>
+                        <td><input type="text" placeholder="Wert 6" value="<?php echo esc_attr($values['agh']); ?>" class="formatted-input" data-group="langfristig" maxlength="11"></td>
                     </tr>
                 </tbody>
             </table> 
@@ -92,15 +120,15 @@ get_header();
                 <tbody>
                     <tr>
                         <td><span class="table-heading">Kreditkarte</span></td>
-                        <td><input type="text" placeholder="Wert 7" value="500" class="formatted-input" data-group="kurzfristig-passiven" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 7" value="<?php echo esc_attr($values['ccard']); ?>" class="formatted-input" data-group="kurzfristig-passiven" maxlength="11"></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Kredit</span></td>
-                        <td><input type="text" placeholder="Wert 8" value="1.000" class="formatted-input" data-group="kurzfristig-passiven" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 8" value="<?php echo esc_attr($values['credit']); ?>" class="formatted-input" data-group="kurzfristig-passiven" maxlength="11"></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Weitere</span></td>
-                        <td><input type="text" placeholder="Wert 9" value="1.500" class="formatted-input" data-group="kurzfristig-passiven" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 9" value="<?php echo esc_attr($values['pkfr']); ?>" class="formatted-input" data-group="kurzfristig-passiven" maxlength="11"></td>
                     </tr>
                 </tbody>
             </table>
@@ -121,15 +149,15 @@ get_header();
                 <tbody>
                     <tr>
                         <td><span class="table-heading">Hypotheken</span></td>
-                        <td><input type="text" placeholder="Wert 10" value="400.000" class="formatted-input" data-group="langfristig-passiven" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 10" value="<?php echo esc_attr($values['hypo']); ?>" class="formatted-input" data-group="langfristig-passiven" maxlength="11"></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Darlehen</span></td>
-                        <td><input type="text" placeholder="Wert 11" value="0" class="formatted-input" data-group="langfristig-passiven" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 11" value="<?php echo esc_attr($values['darlehen']); ?>" class="formatted-input" data-group="langfristig-passiven" maxlength="11"></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Weitere</span></td>
-                        <td><input type="text" placeholder="Wert 12" value="3.000" class="formatted-input" data-group="langfristig-passiven" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 12" value="<?php echo esc_attr($values['plfr']); ?>" class="formatted-input" data-group="langfristig-passiven" maxlength="11"></td>
                     </tr>
                 </tbody>
             </table>
@@ -141,12 +169,10 @@ get_header();
 <!-- /wp:columns -->
 
 <!-- wp:buttons -->
-<div class="wp-block-buttons">
-    <!-- wp:button -->
-    <div class="wp-block-button">
-        <a class="back-button">Submit</a>
-    </div>
-    <!-- /wp:button -->
+<div>
+    
+        <button class="back-button" id="submit-button">Submit</button>
+    
 </div>
 <!-- /wp:buttons -->
 
@@ -229,87 +255,17 @@ get_header();
     }
 </style>
 
-<!-- Custom JavaScript -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const inputs = document.querySelectorAll('.formatted-input');
+document.addEventListener('DOMContentLoaded', function() {
+    const inputs = document.querySelectorAll('.formatted-input');
 
-        inputs.forEach(input => {
-            input.addEventListener('input', function() {
-                let value = input.value.replace(/\./g, '');
-                if (!isNaN(value) && value !== '') {
-                    if (Number(value) > 999999999) {
-                        value = '999999999';
-                    }
-                    input.value = Number(value).toLocaleString('de-DE');
-                }
-                updateTotal(input);
-            });
-        });
-
-        function updateTotal(input) {
-            const table = input.closest('table');
-            const inputValues = table.querySelectorAll('.formatted-input');
-            let total = 0;
-
-            inputValues.forEach(input => {
-                let value = input.value.replace(/\./g, '');
-                if (!isNaN(value) && value !== '') {
-                    total += Number(value);
-                }
-            });
-
-            const group = input.dataset.group;
-            document.querySelector(`#total-${group}`).textContent = total.toLocaleString('de-DE');
-
-            updateOverallTotal();
+    inputs.forEach(input => {
+        let value = input.value.replace(/\./g, '');
+        if (!isNaN(value) && value !== '') {
+            input.value = Number(value).toLocaleString('de-DE');
         }
-
-        function updateOverallTotal() {
-            const totalAktiven = document.querySelector('#total-aktiven');
-            const totalPassiven = document.querySelector('#total-passiven');
-            const kurzfristigAktivenInputs = document.querySelectorAll('.formatted-input[data-group="kurzfristig"]');
-            const langfristigAktivenInputs = document.querySelectorAll('.formatted-input[data-group="langfristig"]');
-            const kurzfristigPassivenInputs = document.querySelectorAll('.formatted-input[data-group="kurzfristig-passiven"]');
-            const langfristigPassivenInputs = document.querySelectorAll('.formatted-input[data-group="langfristig-passiven"]');
-            let aktivenTotal = 0;
-            let passivenTotal = 0;
-
-            kurzfristigAktivenInputs.forEach(input => {
-                let value = input.value.replace(/\./g, '');
-                if (!isNaN(value) && value !== '') {
-                    aktivenTotal += Number(value);
-                }
-            });
-
-            langfristigAktivenInputs.forEach(input => {
-                let value = input.value.replace(/\./g, '');
-                if (!isNaN(value) && value !== '') {
-                    aktivenTotal += Number(value);
-                }
-            });
-
-            kurzfristigPassivenInputs.forEach(input => {
-                let value = input.value.replace(/\./g, '');
-                if (!isNaN(value) && value !== '') {
-                    passivenTotal += Number(value);
-                }
-            });
-
-            langfristigPassivenInputs.forEach(input => {
-                let value = input.value.replace(/\./g, '');
-                if (!isNaN(value) && value !== '') {
-                    passivenTotal += Number(value);
-                }
-            });
-
-            totalAktiven.textContent = aktivenTotal.toLocaleString('de-DE');
-            totalPassiven.textContent = passivenTotal.toLocaleString('de-DE');
-        }
-
-        // Initial calculation of totals
-        inputs.forEach(input => updateTotal(input));
     });
+});
 </script>
 
 <?php

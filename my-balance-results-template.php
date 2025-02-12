@@ -6,9 +6,6 @@ Template Name: Balance Results
 get_header();
 ?>
 
-<div class="site-content">
-    <h1><?php the_title(); ?></h1>
-
     <?php
     $schuldenquote_value = 0; // Default value
 
@@ -17,28 +14,39 @@ get_header();
 
         if (is_array($results) && !empty($results)) {
             echo '<div class="results-container">';
-            foreach ($results as $key => $value) {
-                echo '<div class="result-item">';
-                echo '<span class="result-key">' . esc_html($key) . ':</span>';
-                
-                // Clean and format the value
-                if ($key === 'Schuldenquote') {
-                    // Remove non-numeric characters except for the decimal point
-                    $clean_value = preg_replace('/[^\d.]/', '', $value);
-                    // Format as percentage
-                    $formatted_value = number_format($clean_value, 2, '.', ',') . ' %';
-                    $schuldenquote_value = (float)$clean_value; // Set the schuldenquote value for JavaScript
-                } else {
-                    // Remove non-numeric characters except for the decimal point
-                    $clean_value = preg_replace('/[^\d.]/', '', $value);
-                    // Format as currency without decimal places
-                    $formatted_value = number_format($clean_value, 0, '.', ',') . ' CHF';
-                }
-                
-                echo '<span class="result-value">' . esc_html($formatted_value) . '</span>';
-                echo '</div>';
+
+            // Check if there's a message and display it at the top
+            if (isset($results['message'])) {
+                echo '<p class="result-message">' . esc_html($results['message']) . '</p>';
             }
-            echo '</div>';
+
+            // Loop through results
+            foreach ($results as $key => $value) {
+                if ($key === 'Schuldenquote' or $key === 'Liquidität') {
+                    echo '<div class="result-item">';
+                    echo '<span class="result-key">' . esc_html($key) . ':</span>';
+                    
+                    // Format the value based on the key
+                    if ($key === 'Schuldenquote') {
+                        // Ensure the value is numeric
+                        $clean_value = is_numeric($value) ? (float)$value : 0;
+                        // Format as percentage with 2 decimal places
+                        $formatted_value = number_format($clean_value * 100, 1, '.', ',') . ' %';
+                        $schuldenquote_value = round($clean_value * 100, 1);
+                    } else {
+                        // Ensure the value is numeric
+                        $clean_value = is_numeric($value) ? (float)$value : 0;
+                        // Format as currency (CHF) without decimal places
+                        $formatted_value = number_format($clean_value, 0, '.', ',') . ' CHF';
+                    }
+
+                    // Output the formatted value
+                    echo '<span class="result-value">' . esc_html($formatted_value) . '</span>';
+                    echo '</div>';
+                }
+            }
+
+            echo '</div>'; // Close results-container
         } else {
             echo '<p class="error-message">Fehler bei der Verarbeitung der Ergebnisse. Bitte erneut versuchen.</p>';
         }
@@ -48,7 +56,7 @@ get_header();
     ?>
 
     <a href="<?php echo home_url('/pure-gutenberg-bilanz/'); ?>" class="back-button">Private Bilanz</a>
-</div>
+
 
 <div class="chart-container" id="googleChart"></div>
 

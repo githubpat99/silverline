@@ -257,7 +257,7 @@ article {
 }
 
 .results-container {
-    margin-top: 20px;
+    /* margin-top: 20px;  - to get rid of the space on top */
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -282,6 +282,10 @@ article {
 
 .result-value {
     color: #0073aa;
+}
+
+.result-message {
+    font-size: small
 }
 
 .error-message {
