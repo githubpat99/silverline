@@ -26,13 +26,13 @@ if (!$user_id) {
     <h3 style="margin-top: 0;">Wie hoch ist dein aktuelles Vermögen?</h3>
         <form id="step-1-form">
             <label for="cash">Bargeld</label>
-            <input type="number" id="cash" name="cash" value="" max="999999999" required>
+            <input type="text" class="amount-field" max="99999999" id="cash" name="cash" value="" required>
             <label for="bank">Bank</label>
-            <input type="number" id="bank" name="bank" value="" max="999999999" required>
+            <input type="text" class="amount-field" max="99999999" id="bank" name="bank" value="" required>
             <label for="securities">Wertpapiere</label>
-            <input type="number" id="securities" name="securities" value="" max="999999999" required>
+            <input type="text" class="amount-field" max="99999999" id="securities" name="securities" value="" required>
             <label for="investments">Investitionen</label>
-            <input type="number" id="investments" name="investments" value="" max="999999999" required>
+            <input type="text" class="amount-field" max="99999999" id="investments" name="investments" value="" required>
             <button type="submit" class="ok-btn" data-step-number="1">OK</button>
         </form>
 </template>
@@ -40,19 +40,19 @@ if (!$user_id) {
     <h3 style="margin-top: 0;">Hast du Schulden bzw. Hypotheken?</h3>
         <form id="step-2-form">
             <label for="mortgages">Hypotheken</label>
-            <input type="number" id="mortgages" name="mortgages" value="" max="999999999" required>
+            <input type="text" class="amount-field" max="99999999" id="mortgages" name="mortgages" value="" required>
             <label for="consumer_loans">Konsumkredite</label>
-            <input type="number" id="consumer_loans" name="consumer_loans" value="" max="999999999" required>
+            <input type="text" class="amount-field" max="99999999" class="amount-field" max="99999999" id="consumer_loans" name="consumer_loans" value="" required>
             <button type="submit" class="ok-btn" data-step-number="2">OK</button>
         </form>
 </template>
 <template id="step-3-template">
-<h3 style="margin-top: 0;">Eine Anschaffung oder sogar Erbe in Aussicht?</h3>
+<h3 style="margin-top: 0;">Anschaffung oder sogar Erbe in Aussicht? &#128540</h3>
     <form id="step-3-form">
         <label for="mortgages">Anschaffungen</label>
-        <input type="number" id="mortgages" name="mortgages" value="" max="999999999" required>
+        <input type="text" class="amount-field" max="99999999" id="mortgages" name="mortgages" value="" required>
         <label for="consumer_loans">Erbe</label>
-        <input type="number" id="consumer_loans" name="consumer_loans" value="" max="999999999" required>
+        <input type="text" class="amount-field" max="99999999" id="consumer_loans" name="consumer_loans" value="" required>
         <button type="submit" class="ok-btn" data-step-number="3">OK</button>
     </form>
 </template>
@@ -60,9 +60,9 @@ if (!$user_id) {
     <h3 style="margin-top: 0;">Wie soll deine Finanzstrategie aussehen?</h3>
         <form id="step-4-form">
             <label for="mortgages">sicher investieren</label>
-            <input type="number" id="mortgages" name="mortgages" value="" max="999999999" required>
+            <input type="text" class="amount-field" max="99999999" id="mortgages" name="mortgages" value="" required>
             <label for="consumer_loans">Steuern optimieren</label>
-            <input type="number" id="consumer_loans" name="consumer_loans" value="${stepData.consumer_loans || ''}" max="999999999" required>
+            <input type="text" class="amount-field" max="99999999" id="consumer_loans" name="consumer_loans" value="${stepData.consumer_loans || ''}" required>
             <button type="submit" class="ok-btn" data-step-number="4">OK</button>
         </form>
 </template>
@@ -98,9 +98,9 @@ if (!$user_id) {
     <h3 style="margin-top: 0;">Wie hoch ist deine Sparquote?</h3>
         <form id="step-6-form">
             <label for="mortgages">Sparquote</label>
-            <input type="number" id="mortgages" name="mortgages" value="${stepData.mortgages || ''}" max="999999999" required>
+            <input type="text" class="amount-field" max="99999999" id="mortgages" name="mortgages" value="${stepData.mortgages || ''}" required>
             <label for="consumer_loans">Liquidität</label>
-            <input type="number" id="consumer_loans" name="consumer_loans" value="${stepData.consumer_loans || ''}" max="999999999" required>
+            <input type="text" class="amount-field" max="99999999" id="consumer_loans" name="consumer_loans" value="${stepData.consumer_loans || ''}" required>
             <button type="submit" class="ok-btn" data-step-number="6">OK</button>
         </form>
 </template>

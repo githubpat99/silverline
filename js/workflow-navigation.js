@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
     // Save workflow step data (via AJAX)
     function saveStepData(stepNumber, formData) {
         console.log("Saving Step Data for Step", stepNumber);
-        
+
         $.ajax({
             url: workflowAjax.ajaxurl,
             method: 'POST',
@@ -36,10 +36,10 @@ jQuery(document).ready(function($) {
     navigationItems.on('click', function() {
         const stepNumber = $(this).data('step-number');
         console.log("Navigating to Step", stepNumber);
-        
+
         navigationItems.removeClass('active');
         $(this).addClass('active');
-        
+
         fetchStepData(stepNumber);
     });
 
@@ -93,6 +93,9 @@ jQuery(document).ready(function($) {
         const content = template.content.cloneNode(true);
         fillFormData(content, stepData);
         formContainer.empty().append(content);
+
+        // Reapply the input formatting and validation after rendering
+        reapplyInputFormatting();
     }
 
     // Fill form fields with data dynamically
@@ -125,5 +128,36 @@ jQuery(document).ready(function($) {
     function navigateToNextStep(currentStep) {
         const nextStep = parseInt(currentStep) + 1;
         window.location.href = `?step_number=${nextStep}`;
+    }
+
+    // Reapply input formatting for amount fields
+    function reapplyInputFormatting() {
+        // Apply to all input fields with class 'amount-field'
+        $('#workflow-form').on('input', 'input.amount-field', function() {
+            let input = $(this);
+            let rawValue = input.val().replace(/[^0-9]/g, ''); // Remove non-numeric characters
+
+            // Strip non-numeric characters before max-value validation
+            let rawNumericValue = parseFloat(rawValue.replace(/,/g, ''));
+
+            // Check if the value exceeds the max attribute
+            let maxValue = parseFloat(input.attr('max') || Infinity);
+            if (rawNumericValue > maxValue) {
+                // If it exceeds, set the value to the max value
+                rawValue = maxValue.toString();
+            }
+
+            // Add thousand separators (e.g., 1000 becomes 1,000)
+            let formattedValue = formatWithThousandSeparator(rawValue);
+
+            // Set the input value back
+            input.val(formattedValue);
+        });
+    }
+
+    // Format number with thousand separator (e.g., 1000 becomes 1,000)
+    function formatWithThousandSeparator(value) {
+        // Ensure that value is a string and apply thousand separators
+        return value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 });
