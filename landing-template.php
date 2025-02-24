@@ -4,6 +4,36 @@ Template Name: Landing Template
 */
 
 get_header();
+
+// Get the current user info
+$current_user = wp_get_current_user();
+$button_text = 'Anonyme Bilanz';
+
+if (is_user_logged_in()) {
+    global $wpdb;
+    $user_name = $current_user->user_login;
+
+    // Prepare the SQL query
+    $sql = $wpdb->prepare("
+        SELECT m.first_name 
+        FROM {$wpdb->prefix}swpm_members_tbl m
+        JOIN {$wpdb->prefix}users u ON m.user_name = u.user_login
+        WHERE u.user_login = %s
+    ", $user_name);
+
+    // Log the SQL query for verification
+    error_log('SQL Query: ' . $sql);
+
+    // Retrieve the user's first name from the swpm_members_tbl table
+    $first_name = $wpdb->get_var($sql);
+
+    // Fallback to display name if first name is not set
+    if (empty($first_name)) {
+        $first_name = $current_user->display_name;
+    }
+
+    $button_text = $first_name . "'s Bilanz";
+}
 ?>
 
 <div class="site-content">
@@ -44,7 +74,7 @@ get_header();
 
 <div class="wp-block-buttons">
     <div class="wp-block-button">
-        <a href="<?php echo esc_url(home_url('/pure-gutenberg-bilanz/')); ?>" class="back-button">Private Bilanz</a>
+        <a href="<?php echo esc_url(home_url('/pure-gutenberg-bilanz/')); ?>" class="back-button"><?php echo esc_html($button_text); ?></a>
     </div>
 </div>
 

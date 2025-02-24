@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var data = google.visualization.arrayToDataTable([
             ['Kategorie', 'Wert in %', { role: 'style' }],
             ['Schuldenquote', schuldenquote, '#0073aa'], // Custom color for Schuldenquote
-            ['Durchschnitt Schweiz', averageSchuldenquote, '#5b5e5d'] // Custom color for Durchschnitt Schweiz
+            ['Schweiz Ø - Quelle Blick(2024)', averageSchuldenquote, '#5b5e5d'] // Custom color for Durchschnitt Schweiz
         ]);
 
         // Chart options
