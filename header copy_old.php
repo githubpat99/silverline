@@ -4,23 +4,10 @@
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!--
+  <meta name="viewport" content="width=device-width, initial-scale=1">  -->
   
-  <!-- Make your site full-screen (PWA) -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
   <link rel="profile" href="https://gmpg.org/xfn/11">
-  
-  <!-- Add custom script to hide URL bar on mobile -->
-  <script type="text/javascript">
-    if (window.innerWidth <= 800) {
-      setTimeout(function () {
-        window.scrollTo(0, 1);
-      }, 100);
-    }
-  </script>
-  
   <?php wp_head(); ?>
 </head>
 

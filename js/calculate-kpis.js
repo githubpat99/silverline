@@ -1,14 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
     const inputs = document.querySelectorAll('.formatted-input');
 
+    /*
     if (!document.getElementById('submit-button')) {
         console.log('Submit button not found on this page. Exiting script. Which is OK');
         return; // Stop running the script on the result page
     }
 
-    console.log('Submit button found. Proceeding...');
+    console.log('Submit button found. Proceeding...'); */
     
     const submitButton = document.getElementById('submit-button');
+    const investButton = document.getElementById('invest-button');
+
+    if (investButton) {
+        document.getElementById("invest-button").addEventListener("click", function (event) {
+            console.log("Invest button clicked!");
+        
+            event.preventDefault(); // Stop instant navigation
+            const url = "/invest/";
+            console.log("Redirecting to:", url);
+        
+            window.location.href = url;
+        });
+    }
+    
     
     inputs.forEach(input => {
         input.addEventListener('input', function() {
@@ -23,46 +38,51 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    submitButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Stop instant navigation
-    
-        console.log('Submit button clicked! Calculating KPIs...');
-    
-        const kpis = calculateKPIs();
+    if (submitButton) {
+        submitButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Stop instant navigation
         
-        console.log("KPIs returned before redirect:", kpis);
+            console.log('Submit button clicked! Calculating KPIs...');
+        
+            const kpis = calculateKPIs();
+            
+            console.log("KPIs returned before redirect:", kpis);
 
-        if (!kpis || Object.keys(kpis).length === 0) {
-            console.error("No KPI data found! Stopping redirect.");
-            alert("Fehler: Berechnungen sind nicht verfügbar.");
-            return; // ⛔️ Prevent redirecting if no valid data
-        }
-
-        // Send data to the server via AJAX
-        fetch('/wp-content/themes/my-custom-theme/save-kpis.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(kpis)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Server response:', data);
-            if (data.status === 'success') {
-                const resultsString = encodeURIComponent(JSON.stringify(kpis));
-                const url = `/balance-results/?results=${resultsString}`;
-                console.log("Redirecting to:", url);
-                window.location.href = url;
-            } else {
-                alert('Fehler: ' + data.message);
+            if (!kpis || Object.keys(kpis).length === 0) {
+                console.error("No KPI data found! Stopping redirect.");
+                alert("Fehler: Berechnungen sind nicht verfügbar.");
+                return; // ⛔️ Prevent redirecting if no valid data
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Fehler: Daten konnten nicht gespeichert werden.');
+
+            // Send data to the server via AJAX
+            fetch('/wp-content/themes/my-custom-theme/save-kpis.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(kpis)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Server response:', data);
+                if (data.status === 'success') {
+                    const resultsString = encodeURIComponent(JSON.stringify(kpis));
+                    const url = `/step4/?results=${resultsString}`;
+                    console.log("Redirecting to:", url);
+                    window.location.href = url;
+                } else {
+                    alert('Fehler: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Fehler: Daten konnten nicht gespeichert werden.');
+            });
         });
-    });
+    } else {
+        console.warn('Submit button not found on this page. Exiting script.'); // Stop running the script on the result page
+        return;
+    }
 
     function updateTotal(input) {
         const table = input.closest('table');
@@ -128,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const data = {
             bank: document.querySelector('input[placeholder="Wert 1"]').value.replace(/\./g, ''),
             depot: document.querySelector('input[placeholder="Wert 2"]').value.replace(/\./g, ''),
-            akfr: document.querySelector('input[placeholder="Wert 3"]').value.replace(/\./g, ''),
+            cash: document.querySelector('input[placeholder="Wert 3"]').value.replace(/\./g, ''),
             immo: document.querySelector('input[placeholder="Wert 4"]').value.replace(/\./g, ''),
             priv: document.querySelector('input[placeholder="Wert 5"]').value.replace(/\./g, ''),
             agh: document.querySelector('input[placeholder="Wert 6"]').value.replace(/\./g, ''),
@@ -152,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Extract and convert values to numbers
         const bank = parseFloat(data.bank) || 0;
         const depot = parseFloat(data.depot) || 0;
-        const akfr = parseFloat(data.akfr) || 0;
+        const cash = parseFloat(data.cash) || 0;
         const immo = parseFloat(data.immo) || 0;
         const priv = parseFloat(data.priv) || 0;
         const agh = parseFloat(data.agh) || 0;
@@ -164,10 +184,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const plfr = parseFloat(data.plfr) || 0;
 
         // Calculate Liquidität (Liquidity)
-        console.log('Info: Liquidität: bank: ', bank, ' - depot: ', depot, ' - akfr: ', akfr);
+        console.log('Info: Liquidität: bank: ', bank, ' - depot: ', depot, ' - cash: ', cash);
         
-        const liquidity = bank + depot + akfr;
-        const activa = bank + depot + akfr + immo + priv + agh;
+        const liquidity = bank + depot + cash;
+        const activa = bank + depot + cash + immo + priv + agh;
 
         console.log('Info: Liquidität: ', liquidity);
 
@@ -179,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return {
             bank: bank,
             depot: depot,
-            akfr: akfr, 
+            cash: cash, 
             immo: immo,
             priv: priv,
             agh: agh,

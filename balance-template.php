@@ -15,9 +15,9 @@ $stored_values = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE 
 
 // Set default values if no stored values are found
 $default_values = array(
+    'cash' => '500',
     'bank' => '12500',
     'depot' => '25000',
-    'akfr' => '0',
     'immo' => '850000',
     'priv' => '35000',
     'agh' => '680000',
@@ -27,6 +27,15 @@ $default_values = array(
     'hypo' => '480000',
     'darlehen' => '0',
     'plfr' => '2500',
+    'purchase' => '0',
+    'inherit' => '0',
+    'liq_quote' => '0',
+    'spar_quote' => '0',
+    'risk_quote' => '0',
+    'divers_quote' => '0',
+    'liquiditaet' => '0',
+    'schuldenquote' => '0',
+    'message' => ''
 );
 
 // Merge stored values with default values
@@ -61,16 +70,16 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
             <table class="has-fixed-layout">
                 <tbody>
                     <tr>
+                        <td><span class="table-heading">Bargeld</span></td>
+                        <td><input type="text" placeholder="Wert 3" value="<?php echo esc_attr($values['cash']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
+                    </tr>
+                    <tr>
                         <td><span class="table-heading">Bankkonto</span></td>
                         <td><input type="text" placeholder="Wert 1" value="<?php echo esc_attr($values['bank']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Depot</span></td>
                         <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['depot']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
-                    </tr>
-                    <tr>
-                        <td><span class="table-heading">Weitere</span></td>
-                        <td><input type="text" placeholder="Wert 3" value="<?php echo esc_attr($values['akfr']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
                     </tr>
                 </tbody>
             </table>
@@ -169,11 +178,14 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
 <!-- /wp:columns -->
 
 <!-- wp:buttons -->
-<div>
-    
-        <button class="back-button" id="submit-button">Submit</button>
-    
-</div>
+<table>
+    <tr>
+        <td style="padding-left: 0px"><button class="back-button" id="prev-button">Zurück</button></td>
+        <td style="padding-left: 0px"><button class="back-button" id="submit-button">Kennzahlen</button></td>
+        <td style="padding-left: 0px"><button class="back-button" id="invest-button">Investitionsplan</button></td>
+    </tr>
+</table>
+
 <!-- /wp:buttons -->
 
 <!-- wp:paragraph -->
@@ -244,6 +256,13 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
     body .is-layout-flex {
         display: block;
     }
+
+    .back-button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
     /* Responsive design */
     @media (max-width: 768px) {
         .wp-block-column {

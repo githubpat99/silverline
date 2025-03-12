@@ -1,8 +1,31 @@
+/* Define color variables for easy updates */
+:root {
+    --primary-color: #0073aa;
+    --hover-color: #005177;
+    --text-color: #696969;
+    --border-color: #ccc;
+}
+
+h3,
 h4,
-h5,
-h6,
 .menu {
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    /* font-family: Helvetica Neue, Helvetica, Arial, sans-serif; */
+    font-family: 'Times New Roman', serif;
+    font-size: large;
+    font-weight: 400;
+    padding-left: 0px;
+}
+
+h5 {
+    font-family: 'Times New Roman', serif;
+    font-size: medium;
+    font-weight: 300;
+}
+
+h6 {
+    font-family: 'Times New Roman', serif;
+    font-size: small;
+    font-weight: 200;
 }
 
 a {
@@ -20,7 +43,6 @@ body {
 /* Header Styles */
 .site-header {
     border-bottom: 1px solid #000;
-    padding: 10px 0;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -34,6 +56,7 @@ body {
     font-weight: bold;
     margin-bottom: .25rem;
     line-height: 1;
+    margin-top: 16px;
 }
 
 .site-title a {
@@ -45,88 +68,79 @@ body {
     color: #8e8e8e;
 }
 
-/* Menu toggle button styles */
+/* Menu Toggle Button */
 .menu-toggle {
-    display: none;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
     cursor: pointer;
 }
 
+/* Menu Button Lines */
 .menu-toggle span {
-    width: 25px;
+    display: block;
+    width: 30px;
     height: 3px;
-    background-color: #333;
-    margin: 4px 0;
-    transition: 0.4s;
+    background: white;
 }
 
-/* Navigation menu styles */
+/********** Navigation Menu **********/
+/* Ensure the nav menu is hidden by default */
+/* Default menu state */
 .nav-menu {
-    display: flex; /* Ensure the nav menu is displayed on larger screens */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.nav-menu li {
-    margin-right: 20px;
-}
-
-.nav-menu li a {
-    text-decoration: none;
-    color: #696969;
-}
-
-.nav-menu li a:hover {
-    text-decoration: underline;
-    color: #000;
-}
-
-/* Styles for small screens */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: flex;
-        padding-right: 10px;
-    }
+    position: fixed;
+    top: 34px;
+    right: -250px; /* Hidden off-screen */
+    width: 250px;
+    background: var(--primary-color);
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+    z-index: 1000;
+    margin: 8px;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+  }
   
-/* Only hide the top-level `.nav-menu`, not all `.nav-menu` elements */
-    .site-header > .nav-menu {
-        display: none;
-    /*    position: sticky;  TEST PIN */
-        top: 60px; /* Adjust this value if needed */
-        left: 0;
-        width: 100%;
-        background-color: white;
-        padding: 10px;
-        border-top: 1px solid #ccc;
-        text-align: center;
-    }
-
-    /* Show menu when active */
-    .site-header > .nav-menu.active {
-        display: flex !important;
-        flex-direction: column;
-    }
-
-    /* Ensure full-width links and proper spacing */
-    .nav-menu li {
-        width: 100%;
-        text-align: center;
-        padding: 10px 10px;
-    }
-
-    .nav-menu li a {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        color: #073979;
-        text-decoration: none;
-    }
-
-    .nav-menu li a:hover {
-        background-color: #f0f0f0;
-    }
-}
+  /* When menu is active */
+  .nav-menu.active {
+    transform: translateX(0); /* Bring it into view */
+    opacity: 1;
+    visibility: visible;
+    right: 0;
+  }
+  
+  /* When the <ul> inside the menu is active */
+  .nav-menu ul.active {
+    display: block;  /* Ensure <ul> is shown */
+    opacity: 1;
+  }
+  
+  /* For better styling */
+  .nav-menu ul {
+    list-style: none;
+    margin: 0;
+    display: none; /* Hide initially */
+  }
+  
+  .nav-menu li {
+    padding: 15px 0;
+  }
+  
+  .nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+/********** Enf of Navigation Menu *** Fullscreen***/
 
 
 /* Content Styles */
@@ -218,7 +232,7 @@ article {
     padding: 1rem 1.5rem; /* Increase padding for bigger button */
     margin: 10px;
     font-size: 1.2rem; /* Increase text size */
-    background-color: #0073aa;
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 6px; /* Slightly larger rounded corners */
@@ -227,7 +241,7 @@ article {
 }
 
 .site-content form button:hover {
-    background-color: #005177;
+    background-color: var(--hover-color);
 }
 
 @media (max-width: 768px) {
@@ -259,6 +273,7 @@ article {
 .results-container {
     /* margin-top: 20px;  - to get rid of the space on top */
     padding: 20px;
+    margin-bottom: 30px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -294,14 +309,18 @@ article {
 }
 
 .back-button {
+    position: relative;
     display: block;
     padding: 10px 20px;
+    /* margin-top: 40px; */
     background-color: #0073aa;
     color: #fff;
     text-align: center;
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s;
+    visibility: visible;
+    bottom: 40px;
 }
 
 .back-button:hover {
@@ -310,7 +329,8 @@ article {
 
 .chart-container {
     margin-top: 20px;
-    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     width: 100%;
     height: 300px; /* Default height for larger screens */
 }
@@ -332,12 +352,15 @@ article {
 /* Workflow - Container */
 .workflow-container {
     display: flex;
+    margin-top: 5px;
     flex-direction: row;
+    color: #0b3b66;
+    background: linear-gradient(134deg, rgb(202, 248, 128) 32%, rgb(231, 110, 94) 85%);
 }
 
 .workflow-navigation ul {
     list-style-type: none;
-    padding: 0;
+    padding: 10px;
 }
 
 .workflow-navigation li {
@@ -382,10 +405,19 @@ article {
     background-color: #0073aa;
 }
 
+.drop-down {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.drop-down option {
+    font-size: 18px; /* Adjust the font size as needed */
+}
+
 .workflow-form {
     flex-grow: 1;
     padding: 20px;
-    padding-left: 0px;
+    padding-left: 5px;
     width: 100%;
     max-width: 900px;
 }
@@ -411,4 +443,62 @@ button {
 
 button:hover {
     background-color: #013147;
+}
+
+/* Footer Styles */
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 8px; /* 8px margin on the left */
+    right: 8px; /* 8px margin on the right */
+    width: calc(100% - 16px); /* Ensures the footer takes the full width minus the left and right margins */
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+
+.progress-container {
+    width: 100%;
+    position: relative;
+}
+
+.progress-bar {
+    height: 5px;
+    background: var(--border-color);
+    width: 0%;
+    transition: width 0.3s ease-in-out;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0 10%;
+}
+
+.step {
+    width: 30px;
+    height: 30px;
+    background: #e0e0e0;
+    color: #333;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+}
+
+.step.active {
+    background: #0073aa;
+    color: #fff;
+}
+
+.step:hover {
+    background: #005580;
+    color: #fff;
 }

@@ -7,7 +7,7 @@ get_header();
 
 // Get the current user info
 $current_user = wp_get_current_user();
-$button_text = 'Anonyme Bilanz';
+$button_text = 'Allgemeine Analyse';
 
 if (is_user_logged_in()) {
     global $wpdb;
@@ -32,7 +32,7 @@ if (is_user_logged_in()) {
         $first_name = $current_user->display_name;
     }
 
-    $button_text = $first_name . "'s Bilanz";
+    $button_text = $first_name . "'s persönliche Analyse";
 }
 ?>
 
@@ -40,41 +40,50 @@ if (is_user_logged_in()) {
     <h1><?php the_title(); ?></h1>
 </div>
 
-<!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"#182155"}}},"color":{"text":"#182155"}}} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#182155">Herzlich Willkommen...</h3>
+<!-- wp:heading {"level":4,"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
+<h4 class="wp-block-heading has-text-color has-link-color" style="color:#182155">Wir möchten Dir gerne dabei helfen, Deine Finanzen besser zu verstehen.</h4>
 <!-- /wp:heading -->
-
-<!-- wp:spacer {"height":"31px"} -->
-<div style="height:31px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer -->
 
 <!-- wp:heading {"level":3,"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#182155">Wir möchten gerne auf wichtige Fragen rund um Deine private Vermögenssituation eingehen.</h3>
+<h3 class="wp-block-heading has-text-color has-link-color" style="color:#182155; padding-left: 30px">Bist Du dabei?</h3>
 <!-- /wp:heading -->
 
-<!-- wp:spacer {"height":"26px"} -->
-<div style="height:26px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer -->
-
-<!-- wp:heading {"level":4,"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#182155"><strong>&#8226 Reicht mein Altersguthaben um meinen Lebensstandard halten zu können? </strong></p>
+<!-- wp:heading {"level":5,"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
+<h5 class="wp-block-heading has-text-color has-link-color" style="color:#182155">
+  In weniger Schritten zu Deiner Finanzanalyse.<br /><br />
+  Das wird Dir bestimmt dabei helfen, die folgenden Fragen besser beantworten zu können.
+</h5>
 <!-- /wp:heading -->
-
-<!-- wp:paragraph {"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#182155"><strong>&#8226 Kann ich in meinem Einfamilienhaus bleiben? </strong></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
-<p class="has-text-color has-link-color" style="color:#182155"><strong>&#8226 Wie sehen meine persönlichen Finanzen aktuell und in Zukunft aus?</strong></p>
-<!-- /wp:paragraph -->
 
 <!-- wp:spacer -->
-<div style="height:70px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- <div style="height:6px" aria-hidden="true" class="wp-block-spacer"></div> -->
+<!-- /wp:spacer -->
+
+<!-- wp:heading {"level":5,"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
+<h5 class="wp-block-heading has-text-color has-link-color" style="color:#182155">
+    &#8226 Reicht mein Altersguthaben um meinen Lebensstandard halten zu können?
+</h5>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":5,"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
+<h5 class="wp-block-heading has-text-color has-link-color" style="color:#182155">
+    &#8226 Kann ich in meinem Einfamilienhaus bleiben? 
+</h5>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":5,"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
+<h5 class="wp-block-heading has-text-color has-link-color" style="color:#182155">
+    &#8226 Wie sehen meine persönlichen Finanzen aktuell und in Zukunft aus?
+</h5>
+<!-- /wp:heading -->
+
+<!-- wp:spacer -->
+<div style="height:18px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
 <div class="wp-block-buttons">
     <div class="wp-block-button">
-        <a href="<?php echo esc_url(home_url('/pure-gutenberg-bilanz/')); ?>" class="back-button"><?php echo esc_html($button_text); ?></a>
+        <a href="<?php echo esc_url(home_url('/step2/')); ?>" class="back-button"><?php echo esc_html($button_text); ?></a>
     </div>
 </div>
 

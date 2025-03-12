@@ -86,7 +86,6 @@ jQuery(document).ready(function($) {
     function renderStepContent(stepNumber, stepData) {
         const template = document.getElementById(`step-${stepNumber}-template`);
         if (!template) {
-            console.error(`Template not found for Step ${stepNumber}`);
             return;
         }
 
@@ -111,9 +110,15 @@ jQuery(document).ready(function($) {
                 if (radioToCheck) radioToCheck.checked = true;
             } else {
                 field.value = stepData[key];
+
+                // If the field is a number, format it with a thousand separator
+                if (!isNaN(parseFloat(stepData[key]))) {
+                    field.value = formatWithThousandSeparator(stepData[key]);
+                }
             }
         });
     }
+
 
     // Get the form data for a specific step
     function getFormData(stepNumber) {
@@ -158,6 +163,7 @@ jQuery(document).ready(function($) {
     // Format number with thousand separator (e.g., 1000 becomes 1,000)
     function formatWithThousandSeparator(value) {
         // Ensure that value is a string and apply thousand separators
-        return value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
+
 });
