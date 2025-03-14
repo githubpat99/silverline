@@ -1,0 +1,504 @@
+/* Define color variables for easy updates */
+:root {
+    --primary-color: #0073aa;
+    --hover-color: #005177;
+    --text-color: #696969;
+    --border-color: #ccc;
+}
+
+h3,
+h4,
+.menu {
+    /* font-family: Helvetica Neue, Helvetica, Arial, sans-serif; */
+    font-family: 'Times New Roman', serif;
+    font-size: large;
+    font-weight: 400;
+    padding-left: 0px;
+}
+
+h5 {
+    font-family: 'Times New Roman', serif;
+    font-size: medium;
+    font-weight: 300;
+}
+
+h6 {
+    font-family: 'Times New Roman', serif;
+    font-size: small;
+    font-weight: 200;
+}
+
+a {
+    color: #073979;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 10;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header Styles */
+.site-header {
+    border-bottom: 1px solid #000;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.site-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: .25rem;
+    line-height: 1;
+    margin-top: 16px;
+}
+
+.site-title a {
+    text-decoration: none;
+}
+
+.site-description {
+    margin-top: 0;
+    color: #8e8e8e;
+}
+
+/* Menu Toggle Button */
+.menu-toggle {
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+}
+
+/* Menu Button Lines */
+.menu-toggle span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: white;
+}
+
+/********** Navigation Menu **********/
+/* Ensure the nav menu is hidden by default */
+/* Default menu state */
+.nav-menu {
+    position: fixed;
+    top: 34px;
+    right: -250px; /* Hidden off-screen */
+    width: 250px;
+    background: var(--primary-color);
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+    z-index: 1000;
+    margin: 8px;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  /* When menu is active */
+  .nav-menu.active {
+    transform: translateX(0); /* Bring it into view */
+    opacity: 1;
+    visibility: visible;
+    right: 0;
+  }
+  
+  /* When the <ul> inside the menu is active */
+  .nav-menu ul.active {
+    display: block;  /* Ensure <ul> is shown */
+    opacity: 1;
+  }
+  
+  /* For better styling */
+  .nav-menu ul {
+    list-style: none;
+    margin: 0;
+    display: none; /* Hide initially */
+  }
+  
+  .nav-menu li {
+    padding: 15px 0;
+  }
+  
+  .nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+/********** Enf of Navigation Menu *** Fullscreen***/
+
+
+/* Content Styles */
+.site-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 5px auto;
+    box-sizing: border-box;
+}
+
+article {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 280px;
+    float: left;
+    list-style: none;
+    margin-top: 2em;
+    font-size: 14px;
+}
+
+.widgettitle {
+    border-top: 2px solid;
+    border-bottom: 1px solid #ccc;
+    padding: .25rem 0;
+    font-size: 1.25rem;
+}
+
+/* Form Styles */
+.form-tables {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Fixed space between form tables */
+}
+
+.form-table {
+    width: calc(50% - 20px); /* Adjust width to account for gap */
+    background-color: #f4f4f4;
+}
+
+.form-table.th-activa {
+    border: 2px solid green; /* Green border for Aktiva table */
+    border-radius: 6px;
+}
+
+.form-table.th-passiva {
+    border: 2px solid red; /* Red border for Passiva table */
+    border-radius: 6px;
+}
+
+.form-table th {
+    text-align: left;
+    padding: 10px;
+}
+
+.form-table td {
+    width: 100%;
+    padding-left: 2px;
+    border: none;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: .5rem;
+    width: 100%;
+}
+
+.form-group label {
+    padding-left: 5px;
+    font-weight: bold;
+    width: 150px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    flex: 1;
+    padding: .5rem;
+    font-size: 18px;
+    text-align: right;
+    background-color: white;
+    border: none;
+}
+
+.site-content form button {
+    padding: 1rem 1.5rem; /* Increase padding for bigger button */
+    margin: 10px;
+    font-size: 1.2rem; /* Increase text size */
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 6px; /* Slightly larger rounded corners */
+    cursor: pointer;
+    min-width: 150px; /* Ensure a reasonable minimum width */
+}
+
+.site-content form button:hover {
+    background-color: var(--hover-color);
+}
+
+@media (max-width: 768px) {
+    .form-tables {
+        flex-direction: column; /* Stack tables vertically on small screens */
+    }
+
+    .form-table {
+        width: 100%; /* Full width for each table on small screens */
+    }
+
+    .form-group {
+        flex-direction: column; /* Stack label and input vertically */
+        align-items: flex-start;
+    }
+
+    .form-group label {
+        width: 100%; /* Full width for label */
+        margin-bottom: .5rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"] {
+        width: 90%; /* Full width for input */
+        margin-right: 0;
+    }
+}
+
+.results-container {
+    /* margin-top: 20px;  - to get rid of the space on top */
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-key {
+    font-weight: bold;
+    color: #555;
+}
+
+.result-value {
+    color: #0073aa;
+}
+
+.result-message {
+    font-size: small
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+}
+
+.back-button {
+    position: relative;
+    display: block;
+    padding: 10px 20px;
+    /* margin-top: 40px; */
+    background-color: #0073aa;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    visibility: visible;
+    bottom: 40px;
+}
+
+.back-button:hover {
+    background-color: #005177;
+}
+
+.chart-container {
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    height: 300px; /* Default height for larger screens */
+}
+
+@media screen and (max-width: 768px) {
+    .chart-container {
+        height: 200px; /* Smaller height for tablets and smaller devices */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .chart-container {
+        margin-top: 0px;
+        width: 80%;
+        height: 80px; /* Even smaller height for mobile devices */
+    }
+}
+
+/* Workflow - Container */
+.workflow-container {
+    display: flex;
+    margin-top: 5px;
+    flex-direction: row;
+    color: #0b3b66;
+    background: linear-gradient(134deg, rgb(202, 248, 128) 32%, rgb(231, 110, 94) 85%);
+}
+
+.workflow-navigation ul {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.workflow-navigation li {
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.workflow-navigation a {
+    text-decoration: none;
+    color: #333;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.workflow-navigation a:hover {
+    background-color: #f0f0f0;
+}
+
+.workflow-navigation .step-number {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #0073aa;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.workflow-navigation .active a {
+    background-color: #0073aa;
+    color: white;
+}
+
+.workflow-navigation .active .step-number {
+    background-color: #0073aa;
+}
+
+.drop-down {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.drop-down option {
+    font-size: 18px; /* Adjust the font size as needed */
+}
+
+.workflow-form {
+    flex-grow: 1;
+    padding: 20px;
+    padding-left: 5px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.workflow-form input {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    max-width: 120px;
+    box-sizing: border-box;
+}
+
+
+button {
+    padding: 10px 20px;
+    background-color: #0073aa;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #013147;
+}
+
+/* Footer Styles */
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 8px; /* 8px margin on the left */
+    right: 8px; /* 8px margin on the right */
+    width: calc(100% - 16px); /* Ensures the footer takes the full width minus the left and right margins */
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+
+.progress-container {
+    width: 100%;
+    position: relative;
+}
+
+.progress-bar {
+    height: 5px;
+    background: var(--border-color);
+    width: 0%;
+    transition: width 0.3s ease-in-out;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0 10%;
+}
+
+.step {
+    width: 30px;
+    height: 30px;
+    background: #e0e0e0;
+    color: #333;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+}
+
+.step.active {
+    background: #0073aa;
+    color: #fff;
+}
+
+.step:hover {
+    background: #005580;
+    color: #fff;
+}
