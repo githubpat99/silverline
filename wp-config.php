@@ -37,14 +37,11 @@ define('DB_CHARSET', 'utf8');
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
 
-<<<<<<< HEAD
 /** Disable automatic redirection to the live site. */
 define('WP_HOME', 'http://localhost/silverline-it-pin');
 define('WP_SITEURL', 'http://localhost/silverline-it-pin');
 
 
-=======
->>>>>>> cb44437c9de53cf623ebec5b1a8c91272c831d6e
 /**#@+
  * Authentication Unique Keys and Salts.
  *

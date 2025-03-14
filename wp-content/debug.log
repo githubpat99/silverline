@@ -1,14 +1,13 @@
-[14-Mar-2025 08:13:03 UTC] Cron reschedule event error for hook: wpdiscuz_generate_thumbnails, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"wpdiscuz_generate_thumbnails_every_3h","args":[],"interval":10800}
-[14-Mar-2025 08:14:41 UTC] SQL Query: 
+[14-Mar-2025 12:12:09 UTC] SQL Query: 
         SELECT m.first_name 
         FROM wp_1162188_swpm_members_tbl m
         JOIN wp_1162188_users u ON m.user_name = u.user_login
         WHERE u.user_login = 'patrick.inauen'
     
-[14-Mar-2025 08:14:42 UTC] Step number received on server: 1, User ID: 1
-[14-Mar-2025 08:14:42 UTC] get_workflow_step_data called for user: 1 and step: 1
-[14-Mar-2025 08:14:42 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
-[14-Mar-2025 08:14:42 UTC] get_workflow_step_data - RESULT: Array
+[14-Mar-2025 12:12:09 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:12:09 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:12:09 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:12:09 UTC] get_workflow_step_data - RESULT: Array
 (
     [id] => 4
     [user_id] => 1
@@ -35,10 +34,10 @@
     [message] => Analyse Deiner privaten Bilanz!
 )
 
-[14-Mar-2025 08:14:45 UTC] Step number received on server: 1, User ID: 1
-[14-Mar-2025 08:14:45 UTC] get_workflow_step_data called for user: 1 and step: 1
-[14-Mar-2025 08:14:45 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
-[14-Mar-2025 08:14:45 UTC] get_workflow_step_data - RESULT: Array
+[14-Mar-2025 12:12:13 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:12:13 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:12:13 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:12:13 UTC] get_workflow_step_data - RESULT: Array
 (
     [id] => 4
     [user_id] => 1
@@ -65,10 +64,16 @@
     [message] => Analyse Deiner privaten Bilanz!
 )
 
-[14-Mar-2025 08:14:47 UTC] Step number received on server: 2, User ID: 1
-[14-Mar-2025 08:14:47 UTC] get_workflow_step_data called for user: 1 and step: 2
-[14-Mar-2025 08:14:47 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
-[14-Mar-2025 08:14:47 UTC] get_workflow_step_data - RESULT: Array
+[14-Mar-2025 12:12:44 UTC] SQL Query: 
+        SELECT m.first_name 
+        FROM wp_1162188_swpm_members_tbl m
+        JOIN wp_1162188_users u ON m.user_name = u.user_login
+        WHERE u.user_login = 'patrick.inauen'
+    
+[14-Mar-2025 12:12:45 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:12:45 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:12:45 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:12:45 UTC] get_workflow_step_data - RESULT: Array
 (
     [id] => 4
     [user_id] => 1
@@ -95,10 +100,1210 @@
     [message] => Analyse Deiner privaten Bilanz!
 )
 
-[14-Mar-2025 08:14:49 UTC] Step number received on server: 3, User ID: 1
-[14-Mar-2025 08:14:49 UTC] get_workflow_step_data called for user: 1 and step: 3
-[14-Mar-2025 08:14:49 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
-[14-Mar-2025 08:14:49 UTC] get_workflow_step_data - RESULT: Array
+[14-Mar-2025 12:12:48 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:12:48 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:12:48 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:12:48 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:16:42 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:16:42 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:16:42 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:16:42 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:16:52 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:16:52 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:16:52 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:16:52 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:17:29 UTC] SQL Query: 
+        SELECT m.first_name 
+        FROM wp_1162188_swpm_members_tbl m
+        JOIN wp_1162188_users u ON m.user_name = u.user_login
+        WHERE u.user_login = 'patrick.inauen'
+    
+[14-Mar-2025 12:17:29 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:17:29 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:17:29 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:17:29 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:17:32 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:17:32 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:17:32 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:17:32 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:18:27 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:18:27 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:18:27 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:18:27 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:21:11 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:21:11 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:21:11 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:21:11 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:21:15 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:21:15 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:21:15 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:21:15 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:21:25 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:21:25 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:21:25 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:21:25 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:25:04 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:25:04 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:25:04 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:25:04 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:29:03 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:29:03 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:29:03 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:29:03 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:29:25 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:29:25 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:29:25 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:29:25 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:29:30 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:29:30 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:29:30 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:29:30 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:30:18 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:30:18 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:30:18 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:30:18 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:33:50 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:33:50 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:33:50 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:33:50 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:34:03 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:34:03 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:34:03 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:34:03 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:34:11 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:34:11 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:34:11 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:34:11 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:34:14 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:34:14 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:34:14 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:34:14 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:34:29 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:34:29 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:34:29 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:34:29 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:36:15 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:36:15 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:36:15 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:36:15 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:36:45 UTC] SQL Query: 
+        SELECT m.first_name 
+        FROM wp_1162188_swpm_members_tbl m
+        JOIN wp_1162188_users u ON m.user_name = u.user_login
+        WHERE u.user_login = 'patrick.inauen'
+    
+[14-Mar-2025 12:36:46 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:36:46 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:36:46 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:36:46 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:36:47 UTC] SQL Query: 
+        SELECT m.first_name 
+        FROM wp_1162188_swpm_members_tbl m
+        JOIN wp_1162188_users u ON m.user_name = u.user_login
+        WHERE u.user_login = 'patrick.inauen'
+    
+[14-Mar-2025 12:36:48 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:36:48 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:36:48 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:36:48 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:37:06 UTC] SQL Query: 
+        SELECT m.first_name 
+        FROM wp_1162188_swpm_members_tbl m
+        JOIN wp_1162188_users u ON m.user_name = u.user_login
+        WHERE u.user_login = 'patrick.inauen'
+    
+[14-Mar-2025 12:37:06 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:37:06 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:37:06 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:37:06 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:42:40 UTC] SQL Query: 
+        SELECT m.first_name 
+        FROM wp_1162188_swpm_members_tbl m
+        JOIN wp_1162188_users u ON m.user_name = u.user_login
+        WHERE u.user_login = 'patrick.inauen'
+    
+[14-Mar-2025 12:42:40 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:42:40 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:42:40 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:42:40 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:43:04 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:43:04 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:43:04 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:43:04 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:43:12 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:43:12 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:43:12 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:43:12 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:47:37 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:47:37 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:47:37 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:47:37 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:50:00 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:50:00 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:50:00 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:50:00 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:50:03 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:50:03 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:50:03 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:50:03 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:50:44 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:50:44 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:50:44 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:50:44 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:58:58 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:58:58 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:58:58 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:58:58 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 12:59:00 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 12:59:00 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 12:59:00 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 12:59:00 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 13:00:02 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 13:00:02 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 13:00:02 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 13:00:02 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 13:00:04 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 13:00:04 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 13:00:04 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 13:00:04 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 13:00:07 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 13:00:07 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 13:00:07 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 13:00:07 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 13:00:20 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 13:00:20 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 13:00:20 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 13:00:20 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 13:03:46 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 13:03:46 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 13:03:46 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 13:03:46 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 13:03:49 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 13:03:49 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 13:03:49 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 13:03:49 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 13:30:09 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 13:30:09 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 13:30:09 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 13:30:09 UTC] get_workflow_step_data - RESULT: Array
+(
+    [id] => 4
+    [user_id] => 1
+    [cash] => 20000
+    [bank] => 12500
+    [depot] => 25000
+    [immo] => 850000
+    [priv] => 35000
+    [agh] => 680000
+    [ccard] => 750
+    [credit] => 1500
+    [pkfr] => 0
+    [hypo] => 480000
+    [darlehen] => 0
+    [plfr] => 2500
+    [purchase] => 0
+    [inherit] => 0
+    [liq_quote] => 0
+    [spar_quote] => 0
+    [risk_quote] => 40
+    [divers_quote] => G
+    [liquiditaet] => 57500
+    [schuldenquote] => 0.29876733436055
+    [message] => Analyse Deiner privaten Bilanz!
+)
+
+[14-Mar-2025 13:30:24 UTC] Step number received on server: 1, User ID: 1
+[14-Mar-2025 13:30:24 UTC] get_workflow_step_data called for user: 1 and step: 1
+[14-Mar-2025 13:30:24 UTC] Prepared SQL query: SELECT * FROM wp_1162188_kpis WHERE user_id = 1
+[14-Mar-2025 13:30:24 UTC] get_workflow_step_data - RESULT: Array
 (
     [id] => 4
     [user_id] => 1
