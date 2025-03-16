@@ -18,41 +18,29 @@
  * @package WordPress
  */
 
-// Detect the environment
-if ( file_exists( dirname( __FILE__ ) . '/wp-config_local.php' ) ) {
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define('DB_NAME', 'y12er_WP1162188');
 
-	// ** Local settings - You can get this info from your local web host ** //
-    define( 'WP_ENV', 'local' );
-    require_once dirname( __FILE__ ) . '/wp-config_local.php';
-} else {
+/** MySQL database username */
+define('DB_USER', 'root');
 
-		// ** Production settings - You can get this info from your web host ** //
+/** MySQL database password */
+define('DB_PASSWORD', '');
 
-		// ** MySQL settings - You can get this info from your web host ** //
-		/** The name of the database for WordPress */
-		define('DB_NAME', 'y12er_WP1162188');
-
-		/** MySQL database username */
-		define('DB_USER', 'y12er_WP1162188');
-
-		/** MySQL database password */
-		define('DB_PASSWORD', 'v3mcWZz7mM');
-
-		/** MySQL hostname */
-		define('DB_HOST', 'y12er.myd.infomaniak.com');
-
-		/** Production URL */
-		define('WP_HOME', 'http://silverline-it-pin');
-		define('WP_SITEURL', 'http://silverline-it-pin');
-
-		}
-
+/** MySQL hostname */
+define('DB_HOST', 'localhost');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
+
+/** Disable automatic redirection to the live site. */
+define('WP_HOME', 'http://localhost/silverline-it-pin');
+define('WP_SITEURL', 'http://localhost/silverline-it-pin');
+
 
 /**#@+
  * Authentication Unique Keys and Salts.
