@@ -38,8 +38,8 @@ define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 
 /** Disable automatic redirection to the live site. */
-define('WP_HOME', 'http://localhost/silverline-it-pin');
-define('WP_SITEURL', 'http://localhost/silverline-it-pin');
+define('WP_HOME', 'http://localhost');
+define('WP_SITEURL', 'http://localhost');
 
 
 /**#@+

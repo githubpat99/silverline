@@ -18,12 +18,14 @@
  * @package WordPress
  */
 
-// Detect the environment
-if ( file_exists( dirname( __FILE__ ) . '/wp-config_local.php' ) ) {
+// Check if we're in a local environment (for example by checking the hostname)
+if (strpos($_SERVER['SERVER_NAME'], 'local') !== false) {
+	if ( file_exists( dirname( __FILE__ ) . '/wp-config_local.php' ) ) {
 
-	// ** Local settings - You can get this info from your local web host ** //
-    define( 'WP_ENV', 'local' );
-    require_once dirname( __FILE__ ) . '/wp-config_local.php';
+		// ** Local settings - You can get this info from your local web host ** //
+		define( 'WP_ENV', 'local' );
+		require_once dirname( __FILE__ ) . '/wp-config_local.php';
+	}
 } else {
 
 		// ** Production settings - You can get this info from your web host ** //
@@ -39,12 +41,12 @@ if ( file_exists( dirname( __FILE__ ) . '/wp-config_local.php' ) ) {
 		define('DB_PASSWORD', 'v3mcWZz7mM');
 
 		/** MySQL hostname */
-		define('DB_HOST', 'y12er.myd.infomaniak.com');
+		define('DB_HOST', 'y12er.myd.infomaniak.com:3306');
 
 		/** Production URL */
-		define('WP_HOME', 'http://silverline-it-pin');
-		define('WP_SITEURL', 'http://silverline-it-pin');
-
+		define('WP_HOME', 'https://silverline.it-pin.ch');
+		define('WP_SITEURL', 'https://silverline.it-pin.ch');
+		
 		}
 
 
