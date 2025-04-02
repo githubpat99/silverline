@@ -77,16 +77,6 @@ if (is_user_logged_in()) {
 </h5>
 <!-- /wp:heading -->
 
-<!-- wp:spacer -->
-<div style="height:18px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer -->
-
-<div class="wp-block-buttons">
-    <div class="wp-block-button">
-        <a href="<?php echo esc_url(home_url('/step2/')); ?>" class="back-button"><?php echo esc_html($button_text); ?></a>
-    </div>
-</div>
-
 <?php
 get_footer();
 ?>

@@ -1,0 +1,66 @@
+# Cursor Configuration File
+# This file contains project-specific context and instructions
+
+# Project Information
+project_name: "Silverline WordPress Site"
+project_type: "WordPress"
+environment: "Development"
+
+# Development Guidelines
+coding_standards:
+1. Follow WordPress coding standards and best practices
+2. Use WordPress hooks (actions and filters) appropriately
+3. Utilize WordPress template hierarchy for theme development
+4. Implement proper WordPress database operations using $wpdb or WP functions
+5. Create custom post types, taxonomies, and meta fields when appropriate
+6. Use wp_enqueue_script/style for proper asset management
+
+For WordPress plugin development:
+1. Structure plugins following WordPress plugin architecture
+2. Use WordPress plugin API for extensibility
+3. Follow activation/deactivation/uninstall best practices
+4. Implement proper nonce verification and capability checks
+5. Use WordPress settings API for configuration options
+
+For AJAX in WordPress:
+1. Register AJAX endpoints using wp_ajax_ and wp_ajax_nopriv_ hooks
+2. Implement proper security checks using nonces
+3. Use wp_localize_script for passing data to JavaScript
+4. Structure responses using appropriate status codes and JSON formatting
+
+For theme development using PHP templates:
+1. Implement template parts for reusability
+2. Use get_template_part() for modular code
+3. Leverage WordPress conditional tags effectively
+4. Separate presentation from business logic
+
+# Important Notes
+- This is a WordPress installation with custom theme and plugins
+- Database configuration is managed through wp-config.php
+- Custom functionality should be added through wp-content directory
+- Follow WordPress best practices for security and performance
+
+# File Structure
+- wp-content/: Contains themes, plugins, and custom code
+- wp-admin/: WordPress admin interface
+- wp-includes/: WordPress core files
+- Custom theme files are in wp-content/themes/
+- Custom plugins should be in wp-content/plugins/
+
+# Development Workflow
+1. Make changes in a development environment first
+2. Test thoroughly before deploying to production
+3. Keep backups of important files
+4. Document any custom functionality
+
+# Security Considerations
+- Never commit sensitive data or credentials
+- Keep WordPress core, themes, and plugins updated
+- Follow WordPress security best practices
+- Use proper user roles and permissions 
+
+When security concerns arise, provide a detailed security review between <SECURITY_REVIEW> tags, identifying potential vulnerabilities and mitigation strategies specific to WordPress.
+
+Always consider performance implications, including proper caching strategies, optimized database queries, and efficient use of WordPress functions.
+
+When suggesting changes, break them into discrete steps with small tests after each stage to validate progress. Adjust your approach based on feedback and evolving project requirements.

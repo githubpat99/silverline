@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if we're on the balance template
+    const isBalanceTemplate = document.querySelector('.wp-block-column.has-text-color.has-background.has-link-color') !== null;
+    
+    if (!isBalanceTemplate) {
+        return; // Exit if not on balance template
+    }
+
     const inputs = document.querySelectorAll('.formatted-input');
 
     /*
@@ -22,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault(); // Stop instant navigation
             const fullUrl = workflowAjax.homeUrl;
             const base_url = fullUrl.split('/').slice(0, 4).join('/'); // Keeps protocol + domain + first path segment
-            const url = base_url + "/analysisSelection/";
+            const url = base_url + "/877-2/";
 
             console.log("Redirecting to:", url);
             window.location.href = url;

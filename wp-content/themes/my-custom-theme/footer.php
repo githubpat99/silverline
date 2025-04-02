@@ -3,15 +3,14 @@
         <div class="progress-bar" id="progress-bar"></div>
         <div class="steps">
             <?php 
-            $total_steps = 3; // Define the number of steps
+            $total_steps = 4; // Changed to 4 steps
             $current_step = isset($_GET['step']) ? (int) $_GET['step'] : 1; // Get current step from URL
 
             for ($i = 1; $i <= $total_steps; $i++) : 
-                $active_class = ($i <= $current_step) ? 'active' : '';
-            
-                // Get the base URL dynamically
+                // Get current URL path
+                $current_url = $_SERVER['REQUEST_URI'];
                 $base_url = home_url('/');
-            
+                
                 // Set specific URLs for steps 1 to 4
                 if ($i == 1) {
                     $step_url = $base_url;
@@ -20,12 +19,38 @@
                 } else {
                     $step_url = add_query_arg('step', $i, get_permalink());
                 }
+                
+                // Check if we're on a step page
+                $is_step_page = strpos($current_url, '/step') !== false;
+                
+                // Make all steps active by default, except on step pages
+                $active_class = $is_step_page ? ($i <= $current_step ? 'active' : '') : 'active';
             
                 // Assign an ID only to Step 4 button
                 $step_id = ($i == 4) ? 'id="step4-button"' : ''; 
             ?>
-                <a href="<?php echo esc_url($step_url); ?>" class="step <?php echo $active_class; ?>" data-step="<?php echo $i; ?>" <?php echo $step_id; ?>>
-                    <?php echo $i; ?>
+                <a href="<?php echo esc_url($step_url); ?>" 
+                    class="step" 
+                    data-step="<?php echo $i; ?>" <?php echo $step_id; ?>>
+                    <?php
+                    // Define icons for each step
+                    switch($i) {
+                        case 1:
+                            echo '<i class="fas fa-rocket" title="Einleitung"></i>';
+                            break;
+                        case 2:
+                            echo '<i class="fas fa-database" title="Basisdaten"></i>';
+                            break;
+                        case 3:
+                            echo '<i class="fas fa-balance-scale" title="Bilanz"></i>';
+                            break;
+                        case 4:
+                            echo '<i class="fas fa-chart-line" title="Prognose"></i>';
+                            break;
+                        default:
+                            echo $i;
+                    }
+                    ?>
                 </a>
             <?php endfor; ?>
         </div>
@@ -34,14 +59,21 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const step4Button = document.getElementById('step4-button'); // Now correctly assigned in PHP
-    const submitButton = document.getElementById('submit-button'); // Ensure this ID exists in your form
+    const step4Button = document.getElementById('step4-button');
+    const submitButton = document.getElementById('submit-button');
+    const progressBar = document.getElementById('progress-bar');
+    const currentUrl = window.location.pathname;
+
+    // Set progress bar to 100% if not on step1-3
+    if (!currentUrl.includes('/step1') && !currentUrl.includes('/step2') && !currentUrl.includes('/step3')) {
+        progressBar.style.width = '100%';
+    }
 
     if (step4Button && submitButton) {
         step4Button.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevents navigation
+            event.preventDefault();
             console.log('Step 4 clicked, triggering submit button...');
-            submitButton.click(); // Simulates form submission
+            submitButton.click();
         });
     }
 });

@@ -177,25 +177,6 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
 </div>
 <!-- /wp:columns -->
 
-<!-- wp:buttons -->
-<table>
-    <tr>
-        <td style="padding-left: 0px"><button class="back-button" id="analysis-button">Deine Finanzanalyse</button></td>
-
-    <!-- <div class="wp-block-buttons"> 
-        <td style="padding-left: 0px"><button class="back-button" id="prev-button">Zurück</button></td>
-        <td style="padding-left: 0px"><button class="back-button" id="submit-button">Kennzahlen</button></td>
-        <td style="padding-left: 0px"><button class="back-button" id="invest-button">Investitionsplan</button></td>
-        -->
-    </tr>
-</table>
-
-<!-- /wp:buttons -->
-
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph -->
-
 <!-- Custom CSS -->
 <style>
     .summary-row {

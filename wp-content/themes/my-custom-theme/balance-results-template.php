@@ -4,60 +4,70 @@ Template Name: Balance Results
 */
 
 get_header();
+
+// Get the current user ID
+$user_id = get_current_user_id();
+
+// Fetch stored values from the database
+global $wpdb;
+$table_name = $wpdb->prefix . 'kpis';
+$stored_values = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE user_id = %d", $user_id), ARRAY_A);
+
+// Set default values if no stored values are found
+$default_values = array(
+    'cash' => '500',
+    'bank' => '12500',
+    'depot' => '25000',
+    'immo' => '850000',
+    'priv' => '35000',
+    'agh' => '680000',
+    'ccard' => '750',
+    'credit' => '1500',
+    'pkfr' => '0',
+    'hypo' => '480000',
+    'darlehen' => '0',
+    'plfr' => '2500',
+    'purchase' => '0',
+    'inherit' => '0'
+);
+
+// Merge stored values with default values
+$values = array_merge($default_values, $stored_values ? $stored_values : array());
+
+// Calculate Aktiva (Assets)
+$aktiva = $values['cash'] + $values['bank'] + $values['depot'] + $values['immo'] + $values['priv'] + $values['agh'];
+
+// Calculate Passiva (Liabilities)
+$passiva = $values['ccard'] + $values['credit'] + $values['pkfr'] + $values['hypo'] + $values['darlehen'] + $values['plfr'];
+
+// Calculate Schuldenquote with proper error handling
+$schuldenquote = 0;
+if ($aktiva > 0) {
+    $schuldenquote = ($passiva / $aktiva) * 100;
+}
+
+// Get the liquiditaet value
+$liquiditaet = isset($values['liquiditaet']) ? (float)$values['liquiditaet'] : 0;
+$message = isset($values['message']) ? $values['message'] : '';
 ?>
 
-    <?php
-    $schuldenquote_value = 0; // Default value
+<?php if (!empty($message)) : ?>
+    <p class="result-message"><?php echo esc_html($message); ?></p>
+<?php endif; ?>
 
-    if (isset($_GET['results'])) {
-        $results = json_decode(stripslashes(urldecode($_GET['results'])), true);
+<div class="result-table">
+    <table>
+        <tr>
+            <td><span class="result-label">Liquidität:</span></td>
+            <td><span class="result-value"><?php echo number_format($liquiditaet, 0, '.', ','); ?> CHF</span></td>
+        </tr>
+        <tr>
+            <td><span class="result-label">Schuldenquote:</span></td>
+            <td><span class="result-value"><?php echo number_format($schuldenquote, 1, '.', ','); ?> %</span></td>
+        </tr>
+    </table>
+</div>
 
-        if (is_array($results) && !empty($results)) {
-            echo '<div class="results-container">';
-
-            // Check if there's a message and display it at the top
-            if (isset($results['message'])) {
-                echo '<p class="result-message">' . esc_html($results['message']) . '</p>';
-            }
-
-            // Loop through results
-            foreach ($results as $key => $value) {
-                if ($key === 'Schuldenquote' or $key === 'Liquidität') {
-                    echo '<div class="result-item">';
-                    echo '<span class="result-key">' . esc_html($key) . ':</span>';
-                    
-                    // Format the value based on the key
-                    if ($key === 'Schuldenquote') {
-                        // Ensure the value is numeric
-                        $clean_value = is_numeric($value) ? (float)$value : 0;
-                        // Format as percentage with 2 decimal places
-                        $formatted_value = number_format($clean_value * 100, 1, '.', ',') . ' %';
-                        $schuldenquote_value = round($clean_value * 100, 1);
-                    } else {
-                        // Ensure the value is numeric
-                        $clean_value = is_numeric($value) ? (float)$value : 0;
-                        // Format as currency (CHF) without decimal places
-                        $formatted_value = number_format($clean_value, 0, '.', ',') . ' CHF';
-                    }
-
-                    // Output the formatted value
-                    echo '<span class="result-value">' . esc_html($formatted_value) . '</span>';
-                    echo '</div>';
-                }
-            }
-
-            echo '</div>'; // Close results-container
-        } else {
-            echo '<p class="error-message">Fehler bei der Verarbeitung der Ergebnisse. Bitte erneut versuchen.</p>';
-        }
-    } else {
-        echo '<p class="error-message">Keine Ergebnisse gefunden. Bitte das Formular ausfüllen.</p>';
-    }
-    ?>
-
-    <div>
-        <a href="<?php echo home_url('/step3/'); ?>" class="back-button">Private Bilanz</a>
-    </div>
 
 
 <div class="chart-container" id="googleChart"></div>
@@ -68,8 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-        // Get the schuldenquote value from PHP
-        var schuldenquote = <?php echo json_encode($schuldenquote_value); ?>;
+        // Get the schuldenquote value from PHP and ensure it's a number
+        var schuldenquote = parseFloat(<?php echo json_encode($schuldenquote); ?>);
         var averageSchuldenquote = 49.9;  // Static average value for now
 
         // Prepare data for Google Chart with style roles for colors
@@ -89,16 +99,130 @@ document.addEventListener('DOMContentLoaded', function() {
             vAxis: {minValue: 0}, // Removed title
             hAxis: {}, // Removed title
             legend: { position: 'none' }, // Disable legend
-            width: document.getElementById('googleChart').offsetWidth,
-            height: document.getElementById('googleChart').offsetHeight
+            chartArea: {
+                width: '80%',
+                height: '70%',
+                backgroundColor: '#f8f9fa'  // Same as results-container background
+            },
+            backgroundColor: '#f8f9fa',     // Chart background
+            width: '100%',
+            height: '100%',
+            colors: ['#0073aa', '#5b5e5d'] // Match your theme colors
         };
 
-        // Instantiate and draw the chart
+        // Create and draw the chart
         var chart = new google.visualization.ColumnChart(document.getElementById('googleChart'));
         chart.draw(data, options);
+
+        // Redraw chart when window is resized
+        window.addEventListener('resize', function() {
+            chart.draw(data, options);
+        });
     }
 });
 </script>
+
+<style>
+.results-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.result-item {
+    text-align: center;
+    padding: 15px 25px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    min-width: 200px;
+}
+
+.result-key {
+    display: block;
+    color: #2c3e50;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.result-message {
+    width: 100%;
+    text-align: center;
+    color: #2c3e50;
+    font-size: 16px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #e8f5e9;
+    border-radius: 4px;
+}
+
+.back-button {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #1a2530;
+}
+
+
+
+.result-label {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 782px) {
+    .chart-container {
+        height: 250px;
+        margin: 20px auto;
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .chart-container {
+        height: 200px;
+        margin: 15px auto;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .chart-container {
+        padding: 0;
+    }
+}
+</style>
 
 <?php
 get_footer();

@@ -28,14 +28,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const pathParts = window.location.pathname.split("/").filter(Boolean); // Removes empty parts
   let currentStep = 1; // Default step
 
+  console.log("Path Parts:", pathParts);
+
   pathParts.forEach((part) => {
-    if (part.includes("invest")) {
-        currentStep = 4; // Treat "invest" as step 4
-    } else if (part.includes("step")) {
+    if (part.includes("step")) {
         let stepNumber = parseInt(part.replace("step", ""), 10);
         if (!isNaN(stepNumber)) {
             currentStep = stepNumber;
         }
+    } else {
+        currentStep = 4; // Treat "invest" as step 4
     }
   });
 

@@ -12,6 +12,9 @@
 
   <link rel="profile" href="https://gmpg.org/xfn/11">
   
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
   <!-- Add custom script to hide URL bar on mobile -->
   <script type="text/javascript">
     if (window.innerWidth <= 800) {

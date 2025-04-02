@@ -1,23 +1,24 @@
 <?php
 /* Template Name: Workflow Page */
 
-get_header();
+// Start session if not already started
+if (!session_id()) {
+    session_start();
+}
 
 // Check if the user is logged in
 $user_id = get_current_user_id();
 
 // If the user is not logged in, use a session or other identifier
 if (!$user_id) {
-    if (!session_id()) {
-        session_start(); // Start the session if it hasn't started
-    }
-
     // Use a session identifier for anonymous users
     if (!isset($_SESSION['anonymous_user_id'])) {
         $_SESSION['anonymous_user_id'] = uniqid('anon_', true); // Generate a unique ID
     }
     $user_id = $_SESSION['anonymous_user_id'];
 }
+
+get_header();
 
 ?>
 
@@ -124,50 +125,52 @@ if (!$user_id) {
 </template>
 <!-- End of Hidden Templates -->
 
-<div id="workflow-container" class="workflow-container">
+<div class="workflow-container-background">
 
-    <div class="workflow-form" id="workflow-form">
-        <!-- The form content will be dynamically rendered here by JavaScript -->
+    <div id="workflow-container" class="workflow-container">
 
+        <div class="workflow-form" id="workflow-form">
+            <!-- The form content will be dynamically rendered here by JavaScript -->
+
+            
+        </div>
         
-    </div>
-    
-    <div class="workflow-navigation">
-        <ul>
-            <li class="active" data-step-number="1">
-                <a href="javascript:void(0)">
-                    <span class="step-number">1</span> Vermögen
-                </a>
-            </li>
-            <li data-step-number="2">
-                <a href="javascript:void(0)">
-                    <span class="step-number">2</span> Schulden
-                </a>
-            </li>
-            <li data-step-number="3">
-                <a href="javascript:void(0)">
-                    <span class="step-number">3</span> Vorsorge
-                </a>
-            </li>
-            <li data-step-number="4">
-                <a href="javascript:void(0)">
-                    <span class="step-number">4</span> Erwartungen
-                </a>
-            </li>
-            <li data-step-number="5">
-                <a href="javascript:void(0)">
-                    <span class="step-number">5</span> Planung
-                </a>
-            </li>
-            <li data-step-number="6">
-                <a href="javascript:void(0)">
-                    <span class="step-number">6</span> Liquidität
-                </a>
-            </li>
-        </ul>
-    </div>
+        <div class="workflow-navigation">
+            <ul>
+                <li class="active" data-step-number="1">
+                    <a href="javascript:void(0)">
+                        <span class="step-number">1</span> Vermögen
+                    </a>
+                </li>
+                <li data-step-number="2">
+                    <a href="javascript:void(0)">
+                        <span class="step-number">2</span> Schulden
+                    </a>
+                </li>
+                <li data-step-number="3">
+                    <a href="javascript:void(0)">
+                        <span class="step-number">3</span> Vorsorge
+                    </a>
+                </li>
+                <li data-step-number="4">
+                    <a href="javascript:void(0)">
+                        <span class="step-number">4</span> Erwartungen
+                    </a>
+                </li>
+                <li data-step-number="5">
+                    <a href="javascript:void(0)">
+                        <span class="step-number">5</span> Planung
+                    </a>
+                </li>
+                <li data-step-number="6">
+                    <a href="javascript:void(0)">
+                        <span class="step-number">6</span> Liquidität
+                    </a>
+                </li>
+            </ul>
+        </div>
 
 
+    </div>
 </div>
-
 <?php get_footer(); ?>

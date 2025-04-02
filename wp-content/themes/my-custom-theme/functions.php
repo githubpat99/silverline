@@ -35,7 +35,17 @@ function my_custom_theme_enqueue() {
         'user_id' => get_current_user_id(), // Localized user_id
         'homeUrl' => home_url() // Localized home URL
     ));
+
+    // Add admin bar behavior script
+    wp_enqueue_script(
+        'admin-bar-behavior',
+        get_template_directory_uri() . '/js/admin-bar.js',
+        array('jquery'),
+        '1.0.0',
+        true
+    );
 }
+
 add_action('wp_enqueue_scripts', 'my_custom_theme_enqueue');
 
 function create_kpi_table() {
@@ -276,5 +286,6 @@ function save_workflow_step($user_id, $step_number, $step_data) {
         error_log('Database error: ' . $wpdb->last_error);
     }
 }
+
 
 ?>
