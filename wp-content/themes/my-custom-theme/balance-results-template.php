@@ -59,11 +59,11 @@ $message = isset($values['message']) ? $values['message'] : '';
     <table>
         <tr>
             <td><span class="result-label">Liquidität:</span></td>
-            <td><span class="result-value"><?php echo number_format($liquiditaet, 0, '.', ','); ?> CHF</span></td>
+            <td><span class="result-value"><?php echo number_format($liquiditaet, 0, '.', '.'); ?> CHF</span></td>
         </tr>
         <tr>
             <td><span class="result-label">Schuldenquote:</span></td>
-            <td><span class="result-value"><?php echo number_format($schuldenquote, 1, '.', ','); ?> %</span></td>
+            <td><span class="result-value"><?php echo number_format($schuldenquote, 1, '.', '.'); ?> %</span></td>
         </tr>
     </table>
 </div>
@@ -149,17 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
     color: #2c3e50;
     font-size: 16px;
     margin-bottom: 5px;
-}
-
-.result-message {
-    width: 100%;
-    text-align: center;
-    color: #2c3e50;
-    font-size: 16px;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #e8f5e9;
-    border-radius: 4px;
 }
 
 .back-button {

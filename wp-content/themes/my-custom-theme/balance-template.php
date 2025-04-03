@@ -44,14 +44,13 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
 ?>
 
 <div class="site-content">
-</div>
 
 <div class="summary-row">
-    <div class="summary-item-aktiven" style="color:#0b3b66;background:linear-gradient(134deg,rgb(202,248,128) 32%,rgb(113,206,126) 85%)">
+    <div class="summary-item-aktiven activa-background">
         <h4 class="summary-title">Aktiven</h4>
         <span id="total-aktiven" class="total-value">45'000</span>
     </div>
-    <div class="summary-item-passiven" style="color:#50528c;background:linear-gradient(135deg,rgb(254,205,165) 62%,rgb(254,45,45) 100%,rgb(107,0,62) 100%)">
+    <div class="summary-item-passiven passiva-background">
         <h4 class="summary-title">Passiven</h4>
         <span id="total-passiven" class="total-value">45'000</span>
     </div>
@@ -60,7 +59,7 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
 <!-- wp:columns -->
 <div class="wp-block-columns">
     <!-- Left Column -->
-    <div class="wp-block-column has-text-color has-background has-link-color" style="color:#0b3b66;background:linear-gradient(134deg,rgb(202,248,128) 32%,rgb(113,206,126) 85%)">
+    <div class="wp-block-column has-text-color has-background has-link-color activa-background">
         <!-- wp:heading {"level":4} -->
         <h4 class="wp-block-heading">kurzfristig <span id="total-kurzfristig" class="total-value">0</span></h4>
         <!-- /wp:heading -->
@@ -118,7 +117,7 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
     <!-- /wp:column -->
 
     <!-- Right Column -->
-    <div class="wp-block-column has-text-color has-background has-link-color" style="color:#50528c;background:linear-gradient(135deg,rgb(254,205,165) 62%,rgb(254,45,45) 100%,rgb(107,0,62) 100%)">
+    <div class="wp-block-column has-text-color has-background has-link-color passiva-background">
         <!-- wp:heading {"level":4} -->
         <h4 class="wp-block-heading">kurzfristig <span id="total-kurzfristig-passiven" class="total-value">0</span></h4>
         <!-- /wp:heading -->
@@ -175,7 +174,7 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
     </div>
     <!-- /wp:column -->
 </div>
-<!-- /wp:columns -->
+</div>
 
 <!-- Custom CSS -->
 <style>
@@ -183,6 +182,7 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
         display: flex;
         justify-content: space-between;
         background-color: #f0f0f0;
+        margin-top: 20px;
         margin-bottom: 5px;
     }
     .summary-title {

@@ -4,78 +4,126 @@ Template Name: Landing Template
 */
 
 get_header();
-
-// Get the current user info
-$current_user = wp_get_current_user();
-$button_text = 'Allgemeine Analyse';
-
-if (is_user_logged_in()) {
-    global $wpdb;
-    $user_name = $current_user->user_login;
-
-    // Prepare the SQL query
-    $sql = $wpdb->prepare("
-        SELECT m.first_name 
-        FROM {$wpdb->prefix}swpm_members_tbl m
-        JOIN {$wpdb->prefix}users u ON m.user_name = u.user_login
-        WHERE u.user_login = %s
-    ", $user_name);
-
-    // Log the SQL query for verification
-    error_log('SQL Query: ' . $sql);
-
-    // Retrieve the user's first name from the swpm_members_tbl table
-    $first_name = $wpdb->get_var($sql);
-
-    // Fallback to display name if first name is not set
-    if (empty($first_name)) {
-        $first_name = $current_user->display_name;
-    }
-
-    $button_text = $first_name . "'s persönliche Analyse";
-}
 ?>
 
-<div class="site-content">
-    <h1><?php the_title(); ?></h1>
+<div class="landing-container">
+    <div class="landing-content">
+        <h4 class="landing-title">Wir möchten Dir gerne dabei helfen, Deine Finanzen besser zu verstehen.</h4>
+        <h3 class="landing-subtitle">Bist Du dabei?</h3>
+        <p class="landing-description">
+            Deine persönliche Finanzanalyse wird Dir bestimmt dabei helfen, die folgenden Fragen besser beantworten zu können:
+        </p>
+        <ul class="landing-questions">
+            <li>Reicht mein Altersguthaben, um meinen Lebensstandard halten zu können?</li>
+            <li>Kann ich in meinem Einfamilienhaus bleiben?</li>
+            <li>Wie sehen meine persönlichen Finanzen aktuell und in Zukunft aus?</li>
+        </ul>
+    </div>
 </div>
 
-<!-- wp:heading {"level":4,"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
-<h4 class="wp-block-heading has-text-color has-link-color" style="color:#182155">Wir möchten Dir gerne dabei helfen, Deine Finanzen besser zu verstehen.</h4>
-<!-- /wp:heading -->
+<style>
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(180deg, #f8f9fa, #e9ecef); /* Sehr dezentes Grau */
+    color: #696969; /* Adjusted text color for better contrast */
+}
 
-<!-- wp:heading {"level":3,"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
-<h3 class="wp-block-heading has-text-color has-link-color" style="color:#182155; padding-left: 30px">Bist Du dabei?</h3>
-<!-- /wp:heading -->
+/* Landing Page Container */
+.landing-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align content to the top */
+    padding-top: 50px; 
+    padding-left: 10px;
+    padding-right: 10px; 
+    text-align: center;
+}
 
-<!-- wp:heading {"level":5,"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
-<h5 class="wp-block-heading has-text-color has-link-color" style="color:#182155">
-  In weniger Schritten zu Deiner Finanzanalyse.<br /><br />
-  Das wird Dir bestimmt dabei helfen, die folgenden Fragen besser beantworten zu können.
-</h5>
-<!-- /wp:heading -->
+/* Content Styling */
+.landing-content {
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.8); /* Slightly opaque white background */
+    padding: 30px; /* Reduce padding */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease-in-out;
+    margin-top: 20px; /* Add a small margin from the top */
+}
 
-<!-- wp:spacer -->
-<!-- <div style="height:6px" aria-hidden="true" class="wp-block-spacer"></div> -->
-<!-- /wp:spacer -->
+.landing-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333; /* Darker text for better readability */
+}
 
-<!-- wp:heading {"level":5,"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
-<h5 class="wp-block-heading has-text-color has-link-color" style="color:#182155">
-    &#8226 Reicht mein Altersguthaben um meinen Lebensstandard halten zu können?
-</h5>
-<!-- /wp:heading -->
+.landing-subtitle {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #0073aa; /* Primary color for emphasis */
+}
 
-<!-- wp:heading {"level":5,"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
-<h5 class="wp-block-heading has-text-color has-link-color" style="color:#182155">
-    &#8226 Kann ich in meinem Einfamilienhaus bleiben? 
-</h5>
-<!-- /wp:heading -->
+.landing-description {
+    font-size: 18px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    color: #555; /* Softer text color */
+}
 
-<!-- wp:heading {"level":5,"style":{"color":{"text":"#182155"},"elements":{"link":{"color":{"text":"#182155"}}}}} -->
-<h5 class="wp-block-heading has-text-color has-link-color" style="color:#182155">
-    &#8226 Wie sehen meine persönlichen Finanzen aktuell und in Zukunft aus?
-</h5>
-<!-- /wp:heading -->
+.landing-questions {
+    list-style: none;
+    padding: 0;
+}
+
+.landing-questions li {
+    font-size: 16px;
+    margin: 10px 0;
+    position: relative;
+    padding-left: 25px;
+    color: #333;
+}
+
+.landing-questions li::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: #0073aa; /* Primary color for icons */
+    font-size: 18px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .landing-content {
+        padding: 10px;
+    }
+
+    .landing-title {
+        font-size: 20px;
+    }
+
+    .landing-subtitle {
+        font-size: 24px;
+    }
+
+    .landing-description {
+        font-size: 16px;
+    }
+}
+</style>
 
 <?php
 get_footer();

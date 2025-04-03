@@ -8,18 +8,16 @@
     --text-color: #696969;
     --border-color: #ccc;
     /*
-    --primary-gradient: linear-gradient(154deg, rgb(168, 219, 175) 50%,rgb(32, 250, 65) 75%, rgb(212, 55, 7) 95%); */
-    --primary-gradient: linear-gradient(180deg, #f8f9fa, #e9ecef);
-    /*
     --primary-background: #d1f3ce; */
-    --primary-background: linear-gradient(180deg, #f8f9fa, #e9ecef);
+    --primary-background: linear-gradient(180deg, #f8f9fa, #e9ecef);  /* Sehr dezentes Grau */
+    --activa-background: linear-gradient(135deg, #e9f7ef, #d4edda); /* Sehr sanftes Grün */
+    --passiva-background: linear-gradient(135deg, #fcebea, #f8d7da); /* Sanftes Rot */
 }
 
 h3,
 h4,
 .menu {
-    /* font-family: Helvetica Neue, Helvetica, Arial, sans-serif; */
-    font-family: 'Times New Roman', serif;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     font-size: large;
     font-weight: 400;
     padding-left: 10px;
@@ -48,7 +46,6 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background: var(--primary-background);
 }
 
 /* Header Styles */
@@ -230,7 +227,7 @@ body {
     width: 100%;
     max-width: 1200px;
     box-sizing: border-box;
-    padding-top: 67px;
+    /* padding-top: 67px; */
     background: transparent; /* Make sure content area is transparent */
 }
 
@@ -391,14 +388,29 @@ article {
 .result-message {
     width: 100%;
     text-align: center;
-    color: #2c3e50;
+    color: var(--primary-color);
     font-size: 16px;
+    padding-top: 67px;
     margin-bottom: 20px;
-    padding: 10px;
-    background-color: #e8f5e9;
-    border-radius: 4px;
 }
 
+.summary-container {
+    justify-content: space-between;
+    background-color: #f0f0f0;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.summary-title {
+    text-align: center;
+    padding-top: 47px;
+    color: var(--primary-color);
+}
+
+.landing-title {
+    padding-top: 0px; /*47px;*/
+    color: var(--primary-color);
+}
 .result-table {
     width: 100%;
     max-width: 800px;
@@ -482,10 +494,10 @@ article {
 /* Workflow - Container */
 .workflow-container {
     display: flex;
-    margin-top: 46px;
+    padding-top: 47px;
     flex-direction: row;
     color: #0b3b66;
-    background: var(--primary-gradient);
+    background: var(--primary-background);
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -655,6 +667,13 @@ footer {
     transform: scale(1.1);
 }
 
+/* Activa and Passiva Sections */
+.activa-background {
+    background: var(--activa-background);
+}
+.passiva-background {
+    background: var(--passiva-background);
+}
 
 
 .value-display {

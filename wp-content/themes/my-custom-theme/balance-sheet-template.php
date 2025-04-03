@@ -7,6 +7,8 @@
 get_header();
 ?>
 
+<div class="site-content">
+
 <div class="aktiva-passiva-dashboard">
     <div class="dashboard-container">
         <!-- Top Navigation Section -->
@@ -21,16 +23,7 @@ get_header();
         </div>
 
         <div class="main-content-row">
-            <!-- Left Navigation Section -->
-            <div class="nav-section nav-left">
-                <div class="nav-box">
-                    <h3><?php echo get_theme_mod('left_nav_title', 'Transactions'); ?></h3>
-                    <p><?php echo get_theme_mod('left_nav_description', 'Manage your financial transactions'); ?></p>
-                    <a href="<?php echo esc_url(get_theme_mod('left_nav_link', '#')); ?>" class="nav-button">
-                        <?php echo get_theme_mod('left_nav_button_text', 'Open Transactions'); ?>
-                    </a>
-                </div>
-            </div>
+            
 
             <!-- Main Balance Sheet Display -->
             <div class="balance-sheet">
@@ -84,7 +77,7 @@ get_header();
                     <div class="aktiva-section">
                         <h2>Aktiva</h2>
                         <a href="<?php echo esc_url(home_url('/step3/')); ?>" class="value-display">
-                            <?php echo number_format((float)$aktiva_value, 0, '.', ','); ?> CHF
+                            <?php echo number_format((float)$aktiva_value, 0, '.', '.'); ?> CHF
                         </a>
                     </div>
                     
@@ -93,7 +86,7 @@ get_header();
                     <div class="passiva-section">
                         <h2>Passiva</h2>
                         <a href="<?php echo esc_url(home_url('/step3/')); ?>" class="value-display">
-                            <?php echo number_format((float)$passiva_value, 0, '.', ','); ?> CHF
+                            <?php echo number_format((float)$passiva_value, 0, '.', '.'); ?> CHF
                         </a>
                     </div>
                 </div>
@@ -102,23 +95,12 @@ get_header();
                 <div class="results-container">
                     <div class="result-item">
                         <span class="result-key">Liquidität:</span>
-                        <span class="result-value"><?php echo number_format((float)$liquiditaet, 0, '.', ','); ?> CHF</span>
+                        <span class="result-value"><?php echo number_format((float)$liquiditaet, 0, '.', '.'); ?> CHF</span>
                     </div>
                     <div class="result-item">
                         <span class="result-key">Schuldenquote:</span>
-                        <span class="result-value"><?php echo number_format((float)$schuldenquote, 1, '.', ','); ?> %</span>
+                        <span class="result-value"><?php echo number_format((float)$schuldenquote, 1, '.', '.'); ?> %</span>
                     </div>
-                </div>
-            </div>
-
-            <!-- Right Navigation Section -->
-            <div class="nav-section nav-right">
-                <div class="nav-box">
-                    <h3><?php echo get_theme_mod('right_nav_title', 'Vorsorge Plan'); ?></h3>
-                    <p><?php echo get_theme_mod('right_nav_description', 'Plane Deine finanzielle Vorsorge'); ?></p>
-                    <a href="<?php echo esc_url(get_theme_mod('right_nav_link', '#')); ?>" class="nav-button">
-                        <?php echo get_theme_mod('right_nav_button_text', 'Vorsorge'); ?>
-                    </a>
                 </div>
             </div>
         </div>
@@ -135,12 +117,13 @@ get_header();
         </div>
     </div>
 </div>
+</div>
 
 <!-- Add CSS directly in the template or preferably in a separate stylesheet -->
 <style>
     .aktiva-passiva-dashboard {
         max-width: 1200px;
-        margin-top: 80px;
+        padding-top: 47px;
         margin-bottom: 80px;
         font-family: Arial, sans-serif;
     }
@@ -221,21 +204,6 @@ get_header();
         color: #2c3e50;
         font-size: 24px;
         margin-bottom: 20px;
-    }
-    
-    .value-display {
-        font-size: 32px;
-        font-weight: bold;
-        color: #27ae60;
-        padding: 15px;
-        margin: auto;
-        background-color: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
-    }
-    
-    .passiva-section .value-display {
-        color: #e74c3c;
     }
     
     .details-link {

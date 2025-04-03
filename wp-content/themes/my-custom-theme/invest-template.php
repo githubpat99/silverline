@@ -45,27 +45,32 @@ $vfLiq = $values['liquiditaet'] - $values['liq_quote'] - $values['depot'];
 ?>
 
 <div class="site-content">
-</div>
+    <div class="summary-container">
+        
 
-<h4 class="summary-title">Investitionsplan</h4>
+<h4 class="summary-title">Prognose</h4>
 
 <table class="has-fixed-layout">
     <tbody>
         <tr>
-            <td><span class="table-heading">Sparquote</span></td>
-            <td><input type="text" placeholder="Wert 3" value="<?php echo esc_attr($values['spar_quote']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
+            <td><span class="table-heading">Liquidität</span></td>
+            <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['liquiditaet']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
+        </tr>
+        <tr>
+            <td><span class="table-heading">Depot</span></td>
+            <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['depot']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
         </tr>
         <tr>
             <td><span class="table-heading">Liquiditätsquote</span></td>
             <td><input type="text" placeholder="Wert 1" value="<?php echo esc_attr($values['liq_quote']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
         </tr>
         <tr>
-            <td><span class="table-heading">Liquidität</span></td>
-            <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['liquiditaet']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
+            <td><span class="table-heading">verfügbare Liquidität</span></td>
+            <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($vfLiq); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
         </tr>
         <tr>
-            <td><span class="table-heading">Investments</span></td>
-            <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['depot']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
+            <td><span class="table-heading">Sparquote / Monat</span></td>
+            <td><input type="text" placeholder="Wert 3" value="<?php echo esc_attr($values['spar_quote']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
         </tr>
         <tr>
             <td>
@@ -76,12 +81,11 @@ $vfLiq = $values['liquiditaet'] - $values['liq_quote'] - $values['depot'];
             </td>
             <td><input type="text" id="riskValue" value="<?php echo esc_attr($values['risk_quote']); ?>%" class="formatted-input" readonly></td>
         </tr>
-        <tr>
-            <td><span class="table-heading">verfügbare Liquidität</span></td>
-            <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($vfLiq); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
-        </tr>
+        
     </tbody>
 </table>
+</div>
+
 
 <div class="chart-container" id="googleChart"></div>
 
@@ -91,9 +95,10 @@ $vfLiq = $values['liquiditaet'] - $values['liq_quote'] - $values['depot'];
         <span class="value-amount" id="userFinalValue"></span>
     </div>
     <div class="value-box">
-        <span class="value-label">Ø Potential mit 30% Risiko</span>
+        <span class="value-label">Ø Potential mit 10% Risiko</span>
         <span class="value-amount" id="averageFinalValue"></span>
     </div>
+</div>
 </div>
 
 <style>
@@ -314,86 +319,76 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function drawChart() {
-        var availableLiquidity = <?php echo json_encode($vfLiq); ?>;
-        var riskQuote = parseFloat(document.getElementById('riskSlider').value);
-        var averageRiskQuote = 30;
+    var availableLiquidity = <?php echo json_encode($vfLiq); ?>;
+    var savingsRate = 500; // Monthly savings amount
+    var riskQuote = parseFloat(document.getElementById('riskSlider').value);
+    var monthlyGrowthRate = (riskQuote / 100) / 12; // Convert annual risk rate to monthly
+    var years = 5;
+    var months = years * 12;
 
-        var annualGrowthRate = riskQuote / 100;
-        var averageAnnualGrowthRate = averageRiskQuote / 100;
+    var userData = [];
+    var averageData = [];
+    var balance = availableLiquidity;
+    var averageRiskQuote = 10;
+    var avgMonthlyGrowthRate = (averageRiskQuote / 100) / 12;
+    var avgBalance = availableLiquidity;
 
-        var userData = [];
-        var averageData = [];
-        var years = 5;
+    for (var month = 0; month <= months; month++) {
+        userData.push([month / 12, Math.round(balance)]);
+        averageData.push([month / 12, Math.round(avgBalance)]);
 
-        for (var year = 0; year <= years; year++) {
-            var userPotential = Math.round(availableLiquidity * Math.pow(1 + annualGrowthRate, year));
-            var averagePotential = Math.round(availableLiquidity * Math.pow(1 + averageAnnualGrowthRate, year));
-
-            userData.push([year, userPotential]);
-            averageData.push([year, averagePotential]);
-        }
-
-        // Update the final values
-        updateFinalValues(userData, averageData);
-
-        data = new google.visualization.DataTable();
-        data.addColumn('number', 'Jahr');
-        data.addColumn('number', 'Potential');
-        data.addColumn('number', 'Ø Potential (30%)');
-
-        for (var i = 0; i < userData.length; i++) {
-            data.addRow([userData[i][0], userData[i][1], averageData[i][1]]);
-        }
-
-        var options = {
-            width: '100%',
-            height: Math.max(200, Math.min(400, window.innerWidth * 0.4)),
-            hAxis: { 
-                ticks: [0, 1, 2, 3, 4, 5],
-                gridlines: { color: '#f0f0f0' },
-                textStyle: {
-                    fontSize: 12
-                }
-            },
-            vAxis: {
-                gridlines: { color: '#f0f0f0' },
-                textStyle: {
-                    fontSize: 12
-                }
-            },
-            legend: { 
-                position: 'top',
-                textStyle: {
-                    fontSize: 12
-                }
-            },
-            series: {
-                0: { 
-                    pointSize: 6, 
-                    lineWidth: 3, 
-                    color: '#0073aa' 
-                },
-                1: { 
-                    pointSize: 6, 
-                    lineWidth: 3, 
-                    color: '#5b5e5d' 
-                }
-            },
-            backgroundColor: '#d1f3ce',
-            chartArea: {
-                width: '80%',
-                height: '70%',
-                backgroundColor: '#d1f3ce',
-                left: '10%',
-                top: '15%'
-            }
-        };
-
-        if (!chart) {
-            chart = new google.visualization.LineChart(document.getElementById('googleChart'));
-        }
-        chart.draw(data, options);
+        // Add savings first, then apply interest
+        balance = (balance + savingsRate) * (1 + monthlyGrowthRate);
+        avgBalance = (avgBalance + savingsRate) * (1 + avgMonthlyGrowthRate);
     }
+
+    // Update the final values
+    updateFinalValues(userData, averageData);
+
+    data = new google.visualization.DataTable();
+    data.addColumn('number', 'Jahr');
+    data.addColumn('number', 'Potential');
+    data.addColumn('number', 'Ø Potential (10%)');
+
+    for (var i = 0; i < userData.length; i++) {
+        data.addRow([userData[i][0], userData[i][1], averageData[i][1]]);
+    }
+
+    var options = {
+        width: '100%',
+        height: Math.max(200, Math.min(400, window.innerWidth * 0.4)),
+        hAxis: { 
+            ticks: [0, 1, 2, 3, 4, 5],
+            gridlines: { color: '#f0f0f0' },
+            textStyle: { fontSize: 12 }
+        },
+        vAxis: {
+            gridlines: { color: '#f0f0f0' },
+            textStyle: { fontSize: 12 }
+        },
+        legend: { 
+            position: 'top',
+            textStyle: { fontSize: 12 }
+        },
+        series: {
+            0: { pointSize: 1, lineWidth: 1, color: '#0073aa' },
+            1: { pointSize: 1, lineWidth: 1, color: '#5b5e5d' }
+        },
+        backgroundColor: '#f8f9fa',
+        chartArea: {
+            width: '80%',
+            height: '70%',
+            backgroundColor: '#f8f9fa',
+            left: '10%',
+            top: '15%'
+        }
+    };
+
+    if (!chart) {
+        chart = new google.visualization.LineChart(document.getElementById('googleChart'));
+    }
+    chart.draw(data, options);
+}
 
     // Format Numbers
     function formatNumber(number) {

@@ -123,8 +123,16 @@ jQuery(document).ready(function($) {
     // Get the form data for a specific step
     function getFormData(stepNumber) {
         let formData = {};
-        $(`#step-${stepNumber}-form`).find("input, textarea, select").each(function() {
-            formData[$(this).attr("name")] = $(this).val();
+        $(`#step-${stepNumber}-form`).find("input, textarea, select").each(function () {
+            let input = $(this);
+            let rawValue = input.val();
+
+            // Remove thousand separators before sending to the server
+            if (input.hasClass('amount-field')) {
+                rawValue = rawValue.replace(/\./g, ''); // Remove dots (thousands separator)
+            }
+
+            formData[input.attr("name")] = rawValue;
         });
         return formData;
     }
@@ -138,21 +146,18 @@ jQuery(document).ready(function($) {
     // Reapply input formatting for amount fields
     function reapplyInputFormatting() {
         // Apply to all input fields with class 'amount-field'
-        $('#workflow-form').on('input', 'input.amount-field', function() {
+        $('#workflow-form').on('input', 'input.amount-field', function () {
             let input = $(this);
             let rawValue = input.val().replace(/[^0-9]/g, ''); // Remove non-numeric characters
 
-            // Strip non-numeric characters before max-value validation
-            let rawNumericValue = parseFloat(rawValue.replace(/,/g, ''));
-
             // Check if the value exceeds the max attribute
             let maxValue = parseFloat(input.attr('max') || Infinity);
-            if (rawNumericValue > maxValue) {
+            if (parseFloat(rawValue) > maxValue) {
                 // If it exceeds, set the value to the max value
                 rawValue = maxValue.toString();
             }
 
-            // Add thousand separators (e.g., 1000 becomes 1,000)
+            // Add thousand separators (e.g., 1000 becomes 1.000)
             let formattedValue = formatWithThousandSeparator(rawValue);
 
             // Set the input value back
@@ -160,10 +165,10 @@ jQuery(document).ready(function($) {
         });
     }
 
-    // Format number with thousand separator (e.g., 1000 becomes 1,000)
+    // Format number with thousand separator (e.g., 1000 becomes 1.000)
     function formatWithThousandSeparator(value) {
         // Ensure that value is a string and apply thousand separators
-        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
 
 });

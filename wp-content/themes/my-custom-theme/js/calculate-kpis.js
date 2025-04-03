@@ -180,32 +180,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
-
-    // Calculate KPIs - deprecated
-    function calculateKPIsOld() {
-        const data = {
-            bank: document.querySelector('input[placeholder="Wert 1"]').value.replace(/\./g, ''),
-            depot: document.querySelector('input[placeholder="Wert 2"]').value.replace(/\./g, ''),
-            cash: document.querySelector('input[placeholder="Wert 3"]').value.replace(/\./g, ''),
-            immo: document.querySelector('input[placeholder="Wert 4"]').value.replace(/\./g, ''),
-            priv: document.querySelector('input[placeholder="Wert 5"]').value.replace(/\./g, ''),
-            agh: document.querySelector('input[placeholder="Wert 6"]').value.replace(/\./g, ''),
-            ccard: document.querySelector('input[placeholder="Wert 7"]').value.replace(/\./g, ''),
-            credit: document.querySelector('input[placeholder="Wert 8"]').value.replace(/\./g, ''),
-            pkfr: document.querySelector('input[placeholder="Wert 9"]').value.replace(/\./g, ''),
-            hypo: document.querySelector('input[placeholder="Wert 10"]').value.replace(/\./g, ''),
-            darlehen: document.querySelector('input[placeholder="Wert 11"]').value.replace(/\./g, ''),
-            plfr: document.querySelector('input[placeholder="Wert 12"]').value.replace(/\./g, '')
-        };
-
-        console.log('Calculating KPIs with data:', data);
-
-        const kpis = performKPIcalculation(data);
-        console.log('Calculated KPIs:', kpis);
-
-        return kpis;
-    }
 
     function performKPIcalculation(data) {
         // Extract and convert values to numbers
