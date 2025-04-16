@@ -22,35 +22,44 @@ get_header();
 </div>
 
 <style>
-/* General Reset */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(180deg, #f8f9fa, #e9ecef); /* Sehr dezentes Grau */
-    color: #696969; /* Adjusted text color for better contrast */
-}
 
+
+/* Landing Page Container */
 /* Landing Page Container */
 .landing-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align content to the top */
-    padding-top: 50px; 
+    align-items: flex-start;
+    padding-top: 50px;
     padding-left: 10px;
-    padding-right: 10px; 
+    padding-right: 10px;
     text-align: center;
+    min-height: calc(100vh - 100px); /* Adjusted height to account for reduced padding */
+    background-image: url('<?php echo get_template_directory_uri(); ?>/images/Background_Silverline.png');
+    background-size: cover; /* Ensure the background covers the entire container */
+    position: relative; /* For overlay positioning */
+}
+
+/* Add a semi-transparent overlay */
+.landing-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Light overlay for better readability */
+    z-index: 0; /* Place it behind the content */
 }
 
 /* Content Styling */
 .landing-content {
+    position: relative; /* Ensure content is above the overlay */
+    z-index: 1;
     max-width: 800px;
-    background: rgba(255, 255, 255, 0.8); /* Slightly opaque white background */
-    padding: 30px; /* Reduce padding */
+    padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     animation: fadeIn 1.5s ease-in-out;
-    margin-top: 20px; /* Add a small margin from the top */
 }
 
 .landing-title {
@@ -69,7 +78,7 @@ body {
     font-size: 18px;
     margin-bottom: 30px;
     line-height: 1.6;
-    color: #555; /* Softer text color */
+    color: black; /* Softer text color */
 }
 
 .landing-questions {
@@ -119,9 +128,6 @@ body {
         font-size: 24px;
     }
 
-    .landing-description {
-        font-size: 16px;
-    }
 }
 </style>
 

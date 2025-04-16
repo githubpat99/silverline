@@ -5,114 +5,118 @@
  */
 
 get_header();
+
+// Get the current user ID
+$user_id = get_current_user_id();
+
+// Fetch stored values from the database
+global $wpdb;
+$table_name = $wpdb->prefix . 'kpis';
+$stored_values = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE user_id = %d", $user_id), ARRAY_A);
+
+// Set default values if no stored values are found
+$default_values = array(
+    'cash' => '500',
+    'bank' => '12500',
+    'depot' => '25000',
+    'immo' => '850000',
+    'priv' => '35000',
+    'agh' => '680000',
+    'ccard' => '750',
+    'credit' => '1500',
+    'pkfr' => '0',
+    'hypo' => '480000',
+    'darlehen' => '0',
+    'plfr' => '2500',
+    'purchase' => '0',
+    'inherit' => '0'
+);
+
+// Merge stored values with default values
+$values = array_merge($default_values, $stored_values ? $stored_values : array());
+
+// Calculate Aktiva (Assets)
+$aktiva_value = $values['cash'] + $values['bank'] + $values['depot'] + $values['immo'] + $values['priv'] + $values['agh'];
+
+// Calculate Passiva (Liabilities)
+$passiva_value = $values['ccard'] + $values['credit'] + $values['pkfr'] + $values['hypo'] + $values['darlehen'] + $values['plfr'];
+
+// Calculate Schuldenquote with proper error handling
+$schuldenquote = 0;
+if ($aktiva_value > 0) {
+    $schuldenquote = ($passiva_value / $aktiva_value) * 100;
+}
+
+// Get the results from the database
+$liquiditaet = isset($values['liquiditaet']) ? $values['liquiditaet'] : 0;
 ?>
 
 <div class="site-content">
+
+<div class="summary-row">
+    <div class="summary-item-aktiven activa-background">
+        <h4 class="summary-title">Aktiven</h4>
+        <span id="total-aktiven" class="total-value">
+                <?php echo number_format((float)$aktiva_value, 0, '.', '.'); ?>
+        </span>
+    </div>
+    <div class="summary-item-passiven passiva-background">
+        <h4 class="summary-title">Passiven</h4>
+        <span id="total-passiven" class="total-value">
+            <?php echo number_format((float)$passiva_value, 0, '.', '.'); ?>
+        </span>
+    </div>
+</div>
+
+<!-- separator -->
+<div><hr class="custom-separator">
+    </div>
+<!-- wp:columns -->
 
 <div class="aktiva-passiva-dashboard">
     <div class="dashboard-container">
         <!-- Top Navigation Section -->
         <div class="nav-section nav-top">
             <div class="nav-box">
-                <h3><?php echo get_theme_mod('top_nav_title', 'Finanzanalyse'); ?></h3>
-                <p><?php echo get_theme_mod('top_nav_description', 'Die Finanzanalyse zeigt dir, wie es um Deine Finanzen steht.'); ?></p>
+                <p><?php echo get_theme_mod('top_nav_description', "Wie steht's um deine Finanzen?"); ?></p>
                 <a href="<?php echo esc_url(get_theme_mod('top_nav_link', '/finKpis')); ?>" class="nav-button">
-                    <?php echo get_theme_mod('top_nav_button_text', 'Analyse'); ?>
+                    <?php echo get_theme_mod('top_nav_button_text', 'Bilanzanalyse'); ?>
                 </a>
             </div>
         </div>
 
-        <div class="main-content-row">
-            
-
-            <!-- Main Balance Sheet Display -->
-            <div class="balance-sheet">
-                <?php
-                // Get the current user ID
-                $user_id = get_current_user_id();
-
-                // Fetch stored values from the database
-                global $wpdb;
-                $table_name = $wpdb->prefix . 'kpis';
-                $stored_values = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE user_id = %d", $user_id), ARRAY_A);
-
-                // Set default values if no stored values are found
-                $default_values = array(
-                    'cash' => '500',
-                    'bank' => '12500',
-                    'depot' => '25000',
-                    'immo' => '850000',
-                    'priv' => '35000',
-                    'agh' => '680000',
-                    'ccard' => '750',
-                    'credit' => '1500',
-                    'pkfr' => '0',
-                    'hypo' => '480000',
-                    'darlehen' => '0',
-                    'plfr' => '2500',
-                    'purchase' => '0',
-                    'inherit' => '0'
-                );
-
-                // Merge stored values with default values
-                $values = array_merge($default_values, $stored_values ? $stored_values : array());
-
-                // Calculate Aktiva (Assets)
-                $aktiva_value = $values['cash'] + $values['bank'] + $values['depot'] + $values['immo'] + $values['priv'] + $values['agh'];
-
-                // Calculate Passiva (Liabilities)
-                $passiva_value = $values['ccard'] + $values['credit'] + $values['pkfr'] + $values['hypo'] + $values['darlehen'] + $values['plfr'];
-
-                // Calculate Schuldenquote with proper error handling
-                $schuldenquote = 0;
-                if ($aktiva_value > 0) {
-                    $schuldenquote = ($passiva_value / $aktiva_value) * 100;
-                }
-
-                // Get the results from the database
-                $liquiditaet = isset($values['liquiditaet']) ? $values['liquiditaet'] : 0;
-                ?>
-                
-                <div class="balance-container">
-                    <div class="aktiva-section">
-                        <h2>Aktiva</h2>
-                        <a href="<?php echo esc_url(home_url('/step3/')); ?>" class="value-display">
-                            <?php echo number_format((float)$aktiva_value, 0, '.', '.'); ?> CHF
-                        </a>
-                    </div>
-                    
-                    <div class="balance-divider"></div>
-                    
-                    <div class="passiva-section">
-                        <h2>Passiva</h2>
-                        <a href="<?php echo esc_url(home_url('/step3/')); ?>" class="value-display">
-                            <?php echo number_format((float)$passiva_value, 0, '.', '.'); ?> CHF
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Results Section -->
-                <div class="results-container">
-                    <div class="result-item">
-                        <span class="result-key">Liquidität:</span>
-                        <span class="result-value"><?php echo number_format((float)$liquiditaet, 0, '.', '.'); ?> CHF</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-key">Schuldenquote:</span>
-                        <span class="result-value"><?php echo number_format((float)$schuldenquote, 1, '.', '.'); ?> %</span>
-                    </div>
-                </div>
+        <!-- Navigation Section -->
+        <div class="nav-section nav-bottom">
+            <div class="nav-box">
+                <p><?php echo get_theme_mod('bottom_nav_description', 'Entwicklung Deiner Finanzen'); ?></p>
+                <a href="<?php echo esc_url(get_theme_mod('bottom_nav_link', '/invest')); ?>" class="nav-button">
+                    <?php echo get_theme_mod('bottom_nav_button_text', 'Prognose'); ?>
+                </a>
             </div>
         </div>
 
         <!-- Bottom Navigation Section -->
         <div class="nav-section nav-bottom">
             <div class="nav-box">
-                <h3><?php echo get_theme_mod('bottom_nav_title', 'Entwicklungs Prognose'); ?></h3>
-                <p><?php echo get_theme_mod('bottom_nav_description', 'Entwicklung Deiner Finanzen'); ?></p>
-                <a href="<?php echo esc_url(get_theme_mod('bottom_nav_link', '/invest')); ?>" class="nav-button">
-                    <?php echo get_theme_mod('bottom_nav_button_text', 'Prognose'); ?>
-                </a>
+                <p><?php echo get_theme_mod('bottom_nav_description', 'Member Funktionen'); ?></p>
+                
+                <?php if (is_user_logged_in()) : ?>
+                    <!-- Show buttons with links for logged-in users -->
+                    <a href="<?php echo esc_url(get_theme_mod('bottom_nav_link', '/invest')); ?>" class="nav-button">
+                        <?php echo get_theme_mod('bottom_nav_button_text', 'Tragbarkeit'); ?>
+                    </a>
+                    <a href="<?php echo esc_url(get_theme_mod('bottom_nav_link', '/invest')); ?>" class="nav-button">
+                        <?php echo get_theme_mod('bottom_nav_button_text', 'Sparziele'); ?>
+                    </a>
+                <?php else : ?>
+                    <!-- Show hidden buttons without links for guests -->
+                    <a class="nav-button-hidden">
+                        <?php echo get_theme_mod('bottom_nav_button_text', 'Tragbarkeit'); ?>
+                    </a>
+                    <a class="nav-button-hidden">
+                        <?php echo get_theme_mod('bottom_nav_button_text', 'Sparziele'); ?>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -123,8 +127,8 @@ get_header();
 <style>
     .aktiva-passiva-dashboard {
         max-width: 1200px;
-        padding-top: 47px;
         margin-bottom: 80px;
+        margin-top: 24px;
         font-family: Arial, sans-serif;
     }
     
@@ -165,21 +169,6 @@ get_header();
         margin-bottom: 15px;
     }
     
-    .nav-button {
-        display: inline-block;
-        background-color: #2c3e50;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
-    }
-    
-    .nav-button:hover {
-        background-color: #1a2530;
-    }
-    
     .balance-container {
         display: flex;
         justify-content: space-between;
@@ -200,12 +189,6 @@ get_header();
         margin: 0 10px;
     }
     
-    .aktiva-section h2, .passiva-section h2 {
-        color: #2c3e50;
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-    
     .details-link {
         margin-top: 20px;
     }
@@ -219,27 +202,7 @@ get_header();
     .details-link a:hover {
         text-decoration: underline;
     }
-    
-    .results-container {
-        margin-top: 20px;
-        padding: 15px;
-        background-color: #f8f9fa;
-        border-radius: 8px;
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-    
-    .result-item {
-        text-align: center;
-        padding: 10px 20px;
-        background-color: white;
-        border-radius: 6px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    
+   
     /* Responsive adjustments */
     @media (max-width: 992px) {
         .main-content-row {
@@ -252,7 +215,6 @@ get_header();
         
         .balance-container {
             flex-direction: column;
-            gap: 20px;
         }
         
         .aktiva-section, .passiva-section {

@@ -287,5 +287,46 @@ function save_workflow_step($user_id, $step_number, $step_data) {
     }
 }
 
+function restrict_admin_for_subscribers() {
+    if (is_admin() && !defined('DOING_AJAX') && current_user_can('subscriber')) {
+        wp_redirect(home_url('/'));
+        exit;
+    }
+}
+add_action('init', 'restrict_admin_for_subscribers');
+
+function remove_admin_bar_items_for_subscriber($wp_admin_bar) {
+    if (!current_user_can('subscriber')) {
+        return;
+    }
+
+    // Entferne bestimmte Standard-Menüpunkte
+    $wp_admin_bar->remove_node('wp-logo');            // WordPress Logo
+    $wp_admin_bar->remove_node('about');              // About WordPress
+    $wp_admin_bar->remove_node('wporg');              // WordPress.org
+    $wp_admin_bar->remove_node('documentation');      // Dokumentation
+    $wp_admin_bar->remove_node('support-forums');     // Support-Foren
+    $wp_admin_bar->remove_node('feedback');           // Feedback
+    $wp_admin_bar->remove_node('site-name');          // Website-Titel (mit Dashboard-Link)
+    $wp_admin_bar->remove_node('view-site');          // Website anzeigen
+    $wp_admin_bar->remove_node('updates');            // Updates
+    $wp_admin_bar->remove_node('comments');           // Kommentare
+    $wp_admin_bar->remove_node('new-content');        // +Neu
+    $wp_admin_bar->remove_node('edit-profile');       // Profil bearbeiten
+    $wp_admin_bar->remove_node('my-account');         // Benutzerkonto-Menü
+}
+add_action('admin_bar_menu', 'remove_admin_bar_items_for_subscriber', 999);
+
+function hide_admin_bar_completely() {
+    if (current_user_can('subscriber')) {
+        show_admin_bar(false);
+    }
+}
+add_action('after_setup_theme', 'hide_admin_bar_completely');
+
+add_filter('show_admin_bar', function($show) {
+    return current_user_can('subscriber') ? false : $show;
+});
+
 
 ?>

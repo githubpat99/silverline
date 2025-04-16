@@ -28,6 +28,7 @@ $default_values = array(
     'darlehen' => '0',
     'plfr' => '2500',
     'purchase' => '0',
+    'purchase' => '0',
     'inherit' => '0',
     'liq_quote' => '0',
     'spar_quote' => '0',
@@ -40,65 +41,66 @@ $default_values = array(
 
 // Merge stored values with default values
 $values = array_merge($default_values, $stored_values ? $stored_values : array());
+// Calculate the liquiditaet value
+$values['liquiditaet'] = $values['cash'] + $values['bank'] + $values['depot'];
 $vfLiq = $values['liquiditaet'] - $values['liq_quote'] - $values['depot'];
+$sparquote = $values['spar_quote']; // Monthly savings amount
 
 ?>
 
 <div class="site-content">
     <div class="summary-container">
-        
 
-<h4 class="summary-title">Prognose</h4>
-
-<table class="has-fixed-layout">
-    <tbody>
-        <tr>
-            <td><span class="table-heading">Liquidität</span></td>
-            <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['liquiditaet']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
-        </tr>
-        <tr>
-            <td><span class="table-heading">Depot</span></td>
-            <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['depot']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
-        </tr>
-        <tr>
-            <td><span class="table-heading">Liquiditätsquote</span></td>
-            <td><input type="text" placeholder="Wert 1" value="<?php echo esc_attr($values['liq_quote']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
-        </tr>
-        <tr>
-            <td><span class="table-heading">verfügbare Liquidität</span></td>
-            <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($vfLiq); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
-        </tr>
-        <tr>
-            <td><span class="table-heading">Sparquote / Monat</span></td>
-            <td><input type="text" placeholder="Wert 3" value="<?php echo esc_attr($values['spar_quote']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
-        </tr>
-        <tr>
-            <td>
-                <div class="slider-row">
-                    <span class="table-heading">Risikoquote</span>
-                    <input type="range" id="riskSlider" min="0" max="100" step="5" value="<?php echo esc_attr($values['risk_quote']); ?>" class="risk-slider">
-                </div>
-            </td>
-            <td><input type="text" id="riskValue" value="<?php echo esc_attr($values['risk_quote']); ?>%" class="formatted-input" readonly></td>
-        </tr>
-        
-    </tbody>
-</table>
-</div>
-
-
-<div class="chart-container" id="googleChart"></div>
-
-<div class="final-values">
-    <div class="value-box">
-        <span class="value-label">Potential nach 5 Jahren</span>
-        <span class="value-amount" id="userFinalValue"></span>
+        <table class="has-fixed-layout">
+            <p class="summary-title">Prognose</p>
+            <tbody>
+                <tr>
+                    <td><span class="table-heading">Liquidität</span></td>
+                    <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['liquiditaet']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
+                </tr>
+                <tr>
+                    <td><span class="table-heading">Depot</span></td>
+                    <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['depot']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
+                </tr>
+                <tr>
+                    <td><span class="table-heading">Liquiditätsquote</span></td>
+                    <td><input type="text" placeholder="Wert 1" value="<?php echo esc_attr($values['liq_quote']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
+                </tr>
+                <tr>
+                    <td><span class="table-heading">verfügbare Liquidität</span></td>
+                    <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($vfLiq); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
+                </tr>
+                <tr>
+                    <td><span class="table-heading">Sparquote / Monat</span></td>
+                    <td><input type="text" placeholder="Wert 3" value="<?php echo esc_attr($values['spar_quote']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="slider-row">
+                            <span class="table-heading">Risikoquote</span>
+                            <input type="range" id="riskSlider" min="0" max="100" step="5" value="<?php echo esc_attr($values['risk_quote']); ?>" class="risk-slider">
+                        </div>
+                    </td>
+                    <td><input type="text" id="riskValue" value="<?php echo esc_attr($values['risk_quote']); ?>%" class="formatted-input" readonly></td>
+                </tr>
+                
+            </tbody>
+        </table>
     </div>
-    <div class="value-box">
-        <span class="value-label">Ø Potential mit 10% Risiko</span>
-        <span class="value-amount" id="averageFinalValue"></span>
+
+
+    <div class="chart-container" id="googleChart"></div>
+
+    <div class="final-values">
+        <div class="value-box">
+            <span class="value-label">Potential nach 5 Jahren</span>
+            <span class="value-amount" id="userFinalValue"></span>
+        </div>
+        <div class="value-box">
+            <span class="value-label">Ø Potential mit 10% Risiko</span>
+            <span class="value-amount" id="averageFinalValue"></span>
+        </div>
     </div>
-</div>
 </div>
 
 <style>
@@ -139,9 +141,7 @@ $vfLiq = $values['liquiditaet'] - $values['liq_quote'] - $values['depot'];
 .has-fixed-layout {
     width: 100%;
     max-width: 800px;
-    margin: 20px auto;
     border-collapse: collapse;
-    table-layout: fixed;
 }
 
 .has-fixed-layout td {
@@ -183,7 +183,7 @@ $vfLiq = $values['liquiditaet'] - $values['liq_quote'] - $values['depot'];
     display: inline-block;
     width: 100%;
     text-align: left;
-    font-size: 14px;
+    font-size: 16px;
     padding-left: 15px;
     white-space: nowrap;
     overflow: hidden;
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function drawChart() {
     var availableLiquidity = <?php echo json_encode($vfLiq); ?>;
-    var savingsRate = 500; // Monthly savings amount
+    var savingsRate = parseFloat(<?php echo json_encode($sparquote) ?>);// Monthly savings amount 
     var riskQuote = parseFloat(document.getElementById('riskSlider').value);
     var monthlyGrowthRate = (riskQuote / 100) / 12; // Convert annual risk rate to monthly
     var years = 5;
@@ -328,18 +328,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var userData = [];
     var averageData = [];
-    var balance = availableLiquidity;
+    var balance = parseFloat(availableLiquidity);
     var averageRiskQuote = 10;
     var avgMonthlyGrowthRate = (averageRiskQuote / 100) / 12;
-    var avgBalance = availableLiquidity;
+    var avgBalance = parseFloat(availableLiquidity);
+
+    console.log('Initial Balance:', balance, 'Savings Rate:', savingsRate, 'Monthly Growth Rate:', monthlyGrowthRate);
 
     for (var month = 0; month <= months; month++) {
         userData.push([month / 12, Math.round(balance)]);
         averageData.push([month / 12, Math.round(avgBalance)]);
 
         // Add savings first, then apply interest
-        balance = (balance + savingsRate) * (1 + monthlyGrowthRate);
-        avgBalance = (avgBalance + savingsRate) * (1 + avgMonthlyGrowthRate);
+        balance = (balance + savingsRate) + (balance * monthlyGrowthRate);
+        avgBalance = (avgBalance + savingsRate) + (avgBalance * avgMonthlyGrowthRate);
+
+        console.log('Balance:', balance, 'Savings Rate:', savingsRate, 'Monthly Growth Rate:', monthlyGrowthRate);
     }
 
     // Update the final values

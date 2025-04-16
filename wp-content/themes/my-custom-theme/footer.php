@@ -36,16 +36,16 @@
                     // Define icons for each step
                     switch($i) {
                         case 1:
-                            echo '<i class="fas fa-rocket" title="Einleitung"></i>';
+                            echo '<i class="fas fa-rocket" title="Einleitung"></i>'; // Changed to "fas" for solid font
                             break;
                         case 2:
-                            echo '<i class="fas fa-database" title="Basisdaten"></i>';
+                            echo '<i class="fas fa-database" title="Basisdaten"></i>'; // Changed to "fas" for solid font
                             break;
                         case 3:
-                            echo '<i class="fas fa-balance-scale" title="Bilanz"></i>';
+                            echo '<i class="fas fa-balance-scale" title="Bilanz"></i>'; // Changed to "fas" for solid font
                             break;
                         case 4:
-                            echo '<i class="fas fa-chart-line" title="Prognose"></i>';
+                            echo '<i class="fas fa-chart-line" title="Prognose"></i>'; // Changed to "fas" for solid font
                             break;
                         default:
                             echo $i;

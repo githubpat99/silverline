@@ -56,8 +56,13 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
     </div>
 </div>
 
+<!-- separator -->
+<div><hr class="custom-separator">
+    </div>
 <!-- wp:columns -->
+
 <div class="wp-block-columns">
+
     <!-- Left Column -->
     <div class="wp-block-column has-text-color has-background has-link-color activa-background">
         <!-- wp:heading {"level":4} -->
@@ -70,24 +75,20 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
                 <tbody>
                     <tr>
                         <td><span class="table-heading">Bargeld</span></td>
-                        <td><input type="text" placeholder="Wert 3" value="<?php echo esc_attr($values['cash']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 3" value="<?php echo esc_attr($values['cash']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Bankkonto</span></td>
-                        <td><input type="text" placeholder="Wert 1" value="<?php echo esc_attr($values['bank']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 1" value="<?php echo esc_attr($values['bank']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Depot</span></td>
-                        <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['depot']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['depot']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
                     </tr>
                 </tbody>
             </table>
         </figure>
         <!-- /wp:table -->
-
-        <!-- wp:separator -->
-        <hr class="wp-block-separator has-alpha-channel-opacity"/>
-        <!-- /wp:separator -->
 
         <!-- wp:heading {"level":4} -->
         <h4 class="wp-block-heading">langfristig <span id="total-langfristig" class="total-value">0</span></h4>
@@ -99,15 +100,15 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
                 <tbody>
                     <tr>
                         <td><span class="table-heading">Immobilien</span></td>
-                        <td><input type="text" placeholder="Wert 4" value="<?php echo esc_attr($values['immo']); ?>" class="formatted-input" data-group="langfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 4" value="<?php echo esc_attr($values['immo']); ?>" class="formatted-input" data-group="langfristig" maxlength="11" readonly></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Private Vorsorge</span></td>
-                        <td><input type="text" placeholder="Wert 5" value="<?php echo esc_attr($values['priv']); ?>" class="formatted-input" data-group="langfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 5" value="<?php echo esc_attr($values['priv']); ?>" class="formatted-input" data-group="langfristig" maxlength="11" readonly></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Altersguthaben</span></td>
-                        <td><input type="text" placeholder="Wert 6" value="<?php echo esc_attr($values['agh']); ?>" class="formatted-input" data-group="langfristig" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 6" value="<?php echo esc_attr($values['agh']); ?>" class="formatted-input" data-group="langfristig" maxlength="11" readonly></td>
                     </tr>
                 </tbody>
             </table> 
@@ -115,6 +116,10 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
         <!-- /wp:table --> 
     </div>
     <!-- /wp:column -->
+     
+    <!-- separator -->
+    <div><hr class="custom-separator">
+    </div>
 
     <!-- Right Column -->
     <div class="wp-block-column has-text-color has-background has-link-color passiva-background">
@@ -128,24 +133,20 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
                 <tbody>
                     <tr>
                         <td><span class="table-heading">Kreditkarte</span></td>
-                        <td><input type="text" placeholder="Wert 7" value="<?php echo esc_attr($values['ccard']); ?>" class="formatted-input" data-group="kurzfristig-passiven" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 7" value="<?php echo esc_attr($values['ccard']); ?>" class="formatted-input" data-group="kurzfristig-passiven" maxlength="11" readonly></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Kredit</span></td>
-                        <td><input type="text" placeholder="Wert 8" value="<?php echo esc_attr($values['credit']); ?>" class="formatted-input" data-group="kurzfristig-passiven" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 8" value="<?php echo esc_attr($values['credit']); ?>" class="formatted-input" data-group="kurzfristig-passiven" maxlength="11" readonly></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Weitere</span></td>
-                        <td><input type="text" placeholder="Wert 9" value="<?php echo esc_attr($values['pkfr']); ?>" class="formatted-input" data-group="kurzfristig-passiven" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 9" value="<?php echo esc_attr($values['pkfr']); ?>" class="formatted-input" data-group="kurzfristig-passiven" maxlength="11" readonly></td>
                     </tr>
                 </tbody>
             </table>
         </figure>
         <!-- /wp:table -->
-
-        <!-- wp:separator -->
-        <hr class="wp-block-separator has-alpha-channel-opacity"/>
-        <!-- /wp:separator -->
 
         <!-- wp:heading {"level":4} -->
         <h4 class="wp-block-heading">langfristig <span id="total-langfristig-passiven" class="total-value">0</span></h4>
@@ -157,15 +158,15 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
                 <tbody>
                     <tr>
                         <td><span class="table-heading">Hypotheken</span></td>
-                        <td><input type="text" placeholder="Wert 10" value="<?php echo esc_attr($values['hypo']); ?>" class="formatted-input" data-group="langfristig-passiven" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 10" value="<?php echo esc_attr($values['hypo']); ?>" class="formatted-input" data-group="langfristig-passiven" maxlength="11" readonly></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Darlehen</span></td>
-                        <td><input type="text" placeholder="Wert 11" value="<?php echo esc_attr($values['darlehen']); ?>" class="formatted-input" data-group="langfristig-passiven" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 11" value="<?php echo esc_attr($values['darlehen']); ?>" class="formatted-input" data-group="langfristig-passiven" maxlength="11" readonly></td>
                     </tr>
                     <tr>
                         <td><span class="table-heading">Weitere</span></td>
-                        <td><input type="text" placeholder="Wert 12" value="<?php echo esc_attr($values['plfr']); ?>" class="formatted-input" data-group="langfristig-passiven" maxlength="11"></td>
+                        <td><input type="text" placeholder="Wert 12" value="<?php echo esc_attr($values['plfr']); ?>" class="formatted-input" data-group="langfristig-passiven" maxlength="11" readonly></td>
                     </tr>
                 </tbody>
             </table>
@@ -178,41 +179,6 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
 
 <!-- Custom CSS -->
 <style>
-    .summary-row {
-        display: flex;
-        justify-content: space-between;
-        background-color: #f0f0f0;
-        margin-top: 20px;
-        margin-bottom: 5px;
-    }
-    .summary-title {
-        margin: 5px;
-    }
-    .summary-item-aktiven {
-        flex: 1;
-        text-align: center;
-        background-color: rgba(113, 206, 126);
-        border-radius: 5px;
-    }
-    .summary-item-passiven {
-        flex: 1;
-        text-align: center;
-        background-color: rgb(231, 119, 119);
-        border-radius: 5px;
-    }
-    .summary-item h2 {
-        margin: 0;
-    }
-    .formatted-input {
-        border: none;
-        color: rgb(24, 18, 104);
-        padding: 5px;
-        box-sizing: border-box;
-        width: 160px; /* Adjust the width as needed */
-        height: 30px;
-        font-size: 16px;
-        text-align: right;
-    }
     td, th, h2, h4 {
         padding-left: 10px;
     }
@@ -226,21 +192,8 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
     .wp-block-heading span {
         margin-left: 0px;
     }
-    .total-value {
-        padding: 0 10px;
-    }
-    .total-cell {
-        text-align: center;
-    }
-    .table-heading {
-        display: inline-block;
-    }
-    .wp-container-core-columns-is-layout-1 {
-        flex-wrap: wrap;
-    }
-    body .is-layout-flex {
-        display: block;
-    }
+    
+    
 
     .back-button {
         padding: 10px 15px;
@@ -259,7 +212,7 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
     }
 </style>
 
-<script>
+<!-- <script>
 document.addEventListener('DOMContentLoaded', function() {
     const inputs = document.querySelectorAll('.formatted-input');
 
@@ -270,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-</script>
+</script> -->
 
 <?php
 get_footer();

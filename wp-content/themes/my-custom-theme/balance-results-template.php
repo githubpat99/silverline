@@ -46,31 +46,34 @@ if ($aktiva > 0) {
     $schuldenquote = ($passiva / $aktiva) * 100;
 }
 
-// Get the liquiditaet value
-$liquiditaet = isset($values['liquiditaet']) ? (float)$values['liquiditaet'] : 0;
+// Calculate the liquiditaet value
+$liquiditaet = $values['cash'] + $values['bank'] + $values['depot'];
 $message = isset($values['message']) ? $values['message'] : '';
 ?>
 
-<?php if (!empty($message)) : ?>
-    <p class="result-message"><?php echo esc_html($message); ?></p>
-<?php endif; ?>
+<div class="site-content">
+    <div class="summary-container">
 
-<div class="result-table">
-    <table>
-        <tr>
-            <td><span class="result-label">Liquidität:</span></td>
-            <td><span class="result-value"><?php echo number_format($liquiditaet, 0, '.', '.'); ?> CHF</span></td>
-        </tr>
-        <tr>
-            <td><span class="result-label">Schuldenquote:</span></td>
-            <td><span class="result-value"><?php echo number_format($schuldenquote, 1, '.', '.'); ?> %</span></td>
-        </tr>
-    </table>
+        <table class="has-fixed-layout">
+            <p class="summary-title">Bilanzanalyse</p>
+            <tbody>
+                <tr>
+                    <td><span class="result-label">Liquidität:</span></td>
+                    <td><span class="result-value"><?php echo number_format($liquiditaet, 0, '.', '.'); ?> CHF</span></td>
+                </tr>
+                <tr>
+                    <td><span class="result-label">Schuldenquote:</span></td>
+                    <td><span class="result-value passiv"><?php echo number_format($schuldenquote, 1, '.', '.'); ?> %</span></td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="chart-container" id="googleChart"></div>
+
 </div>
-
-
-
-<div class="chart-container" id="googleChart"></div>
 
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
@@ -124,15 +127,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <style>
 .results-container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #f8f9fa;
+    
+    min-height: calc(100vh - 60px);
+    /* background-color: #f8f9fa; */
     border-radius: 8px;
-    display: flex;
+    display: flex
+;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 20px;
+    background-image: url(/wp-content/themes/my-custom-theme/images/Background_Silverline.png);
+    background-size: cover;
+    z-index: 0;
+    position: relative;
+}
+
+.results-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Light overlay for better readability */
+    z-index: 0; /* Place it behind the content */
 }
 
 .result-item {
@@ -165,18 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .back-button:hover {
     background-color: #1a2530;
-}
-
-
-
-.result-label {
-    display: inline-block;
-    width: 100%;
-    text-align: left;
-    font-size: 14px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .chart-container {

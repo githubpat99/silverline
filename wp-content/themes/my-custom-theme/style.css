@@ -7,11 +7,16 @@
     --hover-color: #005177;
     --text-color: #696969;
     --border-color: #ccc;
+    --activa-color: rgba(0, 128, 0, 1); /* Green */
+    --passiva-color: rgba(200, 0, 0, 1); /* Red */
     /*
     --primary-background: #d1f3ce; */
     --primary-background: linear-gradient(180deg, #f8f9fa, #e9ecef);  /* Sehr dezentes Grau */
     --activa-background: linear-gradient(135deg, #e9f7ef, #d4edda); /* Sehr sanftes Grün */
     --passiva-background: linear-gradient(135deg, #fcebea, #f8d7da); /* Sanftes Rot */
+    --primary-color-transparent: rgba(0, 115, 170, 0.8); /* Transparent version */
+    --text-color-transparent: rgba(105, 105, 105, 0.8); /* Transparent text color */
+    --transparent-background: rgba(0, 115, 170, 0); /* Transparent background */
 }
 
 h3,
@@ -46,12 +51,16 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #f8f9fa, #e9ecef); /* Sehr dezentes Grau */
+    color: #696969; /* Adjusted text color for better contrast */
 }
+
 
 /* Header Styles */
 .site-header {
-    background-color: var(--primary-color);
-    border-bottom: 1px solid #000;
+    /* background-color: var(--primary-color); */
+    background-image: url(/wp-content/themes/my-custom-theme/images/Background_Silverline.png);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -63,6 +72,18 @@ body {
     top: 0;
     z-index: 999;
     padding: 10px 20px;
+}
+
+/* Add a semi-transparent overlay */
+.site-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color-transparent); /* Transparent primary color */
+    z-index: 0; /* Place it behind the content */
 }
 
 /* Admin bar adjustments */
@@ -104,12 +125,19 @@ body {
 }
 
 .formatted-input {
-    width: 60px;
-    text-align: right;
-    background-color: var(--primary-background);
     border: none;
-    border-radius: 4px;
-    padding: 5px 10px;
+    color: rgb(24, 18, 104);
+    background-color: var(--primary-background);
+    padding: 5px;
+    box-sizing: border-box;
+    width: 60px; /* from 160px */
+    font-size: 16px;
+    text-align: right;
+}
+.formatted-input:focus {
+outline: none;
+border: none;
+box-shadow: none;
 }
 
 @media screen and (max-width: 600px) {
@@ -132,9 +160,9 @@ body {
 
 .site-title {
     font-size: 2rem;
-    font-weight: bold;
     margin: 0;
     line-height: 1;
+    z-index: 1;
 }
 
 .site-title a {
@@ -144,7 +172,8 @@ body {
 
 .site-description {
     margin-top: 0;
-    color: #8e8e8e;
+    color: white;
+    z-index: 1;
 }
 
 /* Menu Toggle Button */
@@ -159,6 +188,7 @@ body {
     align-items: center;
     border: none;
     cursor: pointer;
+    background-color: var(--primary-color-transparent); /* Transparent primary color */
 }
 
 /* Menu Button Lines */
@@ -167,6 +197,7 @@ body {
     width: 30px;
     height: 3px;
     background: white;
+    z-index: 1;
 }
 
 /********** Navigation Menu **********/
@@ -174,13 +205,12 @@ body {
 /* Default menu state */
 .nav-menu {
     position: fixed;
-    top: 34px;
+    top: 30px;
     right: -250px; /* Hidden off-screen */
     width: 250px;
-    background: var(--primary-color);
+    background: var(--primary-color-transparent); /* Transparent primary color */
     transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
     z-index: 1000;
-    margin: 8px;
     display: flex;
     flex-direction: column;
     visibility: hidden;
@@ -225,11 +255,27 @@ body {
 /* Content Styles */
 .site-content {
     width: 100%;
-    max-width: 1200px;
+    min-height: 100vh; /* Ensure it takes full height */
     box-sizing: border-box;
-    /* padding-top: 67px; */
-    background: transparent; /* Make sure content area is transparent */
+    padding-top: 47px;
+    background-image: url(/wp-content/themes/my-custom-theme/images/Background_Silverline.png);
+    background-size: cover;
+    z-index: 0; /* Ensure it appears below the header */
+    position: relative; /* For absolute positioning of the overlay */
 }
+
+.site-content::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 47px;
+    background-color: rgba(255, 255, 255, 0.8); /* Light overlay for better readability */
+    z-index: -1; /* Place it behind the content */
+    top: 0; /* Align with the content */
+}
+
 
 article {
     margin-top: 2rem;
@@ -350,19 +396,6 @@ article {
     }
 }
 
-/* Results Styles */
-.results-container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
 .result-item {
     text-align: center;
     padding: 15px 25px;
@@ -385,26 +418,31 @@ article {
     font-weight: bold;
 }
 
+.result-value.passiv {
+    display: block;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
 .result-message {
     width: 100%;
     text-align: center;
     color: var(--primary-color);
     font-size: 16px;
-    padding-top: 67px;
+    padding-top: 47px;
     margin-bottom: 20px;
 }
 
-.summary-container {
-    justify-content: space-between;
-    background-color: #f0f0f0;
-    margin-top: 20px;
-    margin-bottom: 5px;
+.activa-background .summary-title {
+    text-align: center;
+    font-weight: bold;
+    color: var(--activa-color);
 }
 
-.summary-title {
+.passiva-background .summary-title {
     text-align: center;
-    padding-top: 47px;
-    color: var(--primary-color);
+    font-weight: bold;
+    color: var(--passiva-color);
 }
 
 .landing-title {
@@ -413,30 +451,26 @@ article {
 }
 .result-table {
     width: 100%;
+    padding-top: 24px;
     max-width: 800px;
-    margin: 20px auto;
     border-collapse: collapse;
     table-layout: fixed;
-}
-
-.result-table td {
-    padding: 8px 12px;
-    vertical-align: middle;
+    z-index: 1; /* Ensure it appears above the footer */
 }
 
 .result-table td:first-child {
-    width: 65%;
+    width: 40%;
 }
 
 .result-table td:last-child {
-    width: 35%;
+    width: 60%;
 }
 
 .result-label {
     display: inline-block;
+    padding: 0px 20px 0px 20px;
     width: 100%;
     text-align: left;
-    font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -459,9 +493,6 @@ article {
 }
 
 .chart-container {
-    width: 100%;
-    max-width: 800px;
-    height: 400px;
     margin: 40px auto;
     padding: 20px;
     border-radius: 8px;
@@ -492,14 +523,33 @@ article {
 }
 
 /* Workflow - Container */
-.workflow-container {
+.workflow-container-background {
     display: flex;
-    padding-top: 47px;
-    flex-direction: row;
-    color: #0b3b66;
-    background: var(--primary-background);
+    padding-top: 50px;
+    background-image: url(/wp-content/themes/my-custom-theme/images/Background_Silverline.png);
+    background-size: cover;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+/* Add a semi-transparent overlay */
+.workflow-container-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Light overlay for better readability */
+    z-index: 0; /* Place it behind the content */
+}
+
+.workflow-container {
+    display: flex;
+    z-index: 1; /* Ensure it appears above the footer */
 }
 
 .workflow-navigation ul {
@@ -535,13 +585,13 @@ article {
     font-size: 16px;
     font-weight: bold;
     color: white;
-    background-color: #0073aa;
+    background-color: var(--primary-color-transparent);
     border-radius: 50%;
     margin-right: 10px;
 }
 
 .workflow-navigation .active a {
-    background-color: #0073aa;
+    background-color: var(--primary-color-transparent);
     color: white;
 }
 
@@ -561,7 +611,6 @@ article {
 .workflow-form {
     flex-grow: 1;
     padding: 20px;
-    padding-left: 5px;
     width: 100%;
     max-width: 900px;
 }
@@ -578,28 +627,101 @@ article {
 
 button {
     padding: 10px 20px;
-    background-color: #0073aa;
-    color: white;
     border: none;
     cursor: pointer;
     border-radius: 4px;
+    color: white;
+    background-color: var(--primary-color-transparent);
 }
 
 button:hover {
     background-color: #013147;
 }
 
+/* Balance - Sheet (Aktiva and Passiva) */
+.summary-item-aktiven {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    color: var(--activa-color);
+    border-radius: 5px;
+}
+.summary-item-passiven {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    color: var(--passiva-color);
+    border-radius: 5px;
+}
+
+.activa-background .wp-block-heading {
+    color: var(--activa-color);
+}
+.activa-background .table-heading {
+    color: var(--activa-color);
+}
+.passiva-background .wp-block-heading {
+    color: var(--passiva-color);
+}
+.passiva-background .table-heading {
+    color: var(--passiva-color);
+}
+
+.summary-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    margin: 30px 20px 20px 20px;
+    color: var(--primary-color);
+}
+
+.nav-button-hidden {
+    display: inline-block;
+    background-color: var(--primary-color-transparent); /* Transparent primary color */
+    color: light-gray;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.nav-button {
+    display: inline-block;
+    background-color: var(--primary-color-transparent); /* Transparent primary color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: #1a2530;
+}
 /* Footer Styles */
 
 footer {
     position: fixed;
     bottom: 0;
     width: 100%; /* Ensures the footer takes the full width */
-    background-color: var(--primary-color);
+    background-image: url(/wp-content/themes/my-custom-theme/images/Background_Silverline.png);    
     color: white;
     text-align: center;
 }
 
+/* Add a semi-transparent overlay */
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color-transparent); /* Transparent primary color */
+    z-index: 0; /* Place it behind the content */
+}
 
 .progress-container {
     width: 100%;
@@ -633,7 +755,6 @@ footer {
 }
 
 .step.active {
-    background: #0073aa;
     color: #fff;
 }
 
@@ -666,20 +787,23 @@ footer {
 .steps .step:hover i {
     transform: scale(1.1);
 }
+    
+.aktiva-section h2 {
+    color: var(--activa-color);
+    font-size: 24px;
+    margin-bottom: 20px;
+} 
 
-/* Activa and Passiva Sections */
-.activa-background {
-    background: var(--activa-background);
+.passiva-section h2 {
+    color: var(--passiva-color);
+    font-size: 24px;
+    margin-bottom: 20px;
 }
-.passiva-background {
-    background: var(--passiva-background);
-}
-
 
 .value-display {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
-    color: #27ae60;
+    color: var(--activa-color);
     padding: 15px;
     margin: auto;
     background-color: #f9f9f9;
@@ -696,13 +820,12 @@ footer {
 }
 
 .passiva-section .value-display {
-    color: #e74c3c;
+    color: var(--passiva-color);
 }
 
 .nav-section {
-    background-color: #f5f5f5;
     border-radius: 10px;
-    padding: 20px 0; /* Remove horizontal padding */
+    padding: 10px 0; /* Remove horizontal padding */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
     width: 90%;
@@ -712,10 +835,49 @@ footer {
 .balance-sheet {
     width: 90%;
     margin: 0 auto; /* Center horizontally */
-    padding: 20px 0; /* Remove horizontal padding */
+    padding: 10px 0; /* Remove horizontal padding */
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 20px 5px 20px;
+}
+
+.summary-item h2 {
+    margin: 0;
+}
+
+.custom-separator {
+    flex-basis: 100%; /* Ensure it spans the full width */
+    background-color: var(--primary-color); /* Use a solid color */
+    margin: 10px 10px 10px 10px; /* Add spacing */
+}
+
+.wp-block-columns {
+    align-items: normal !important;
+    box-sizing: border-box;
+    padding: 0px 10px 20px 10px;
+    display: block; /* Ensure it behaves like a block element */
+}
+
+.total-value {
+    padding: 0 20px;
+}
+.total-cell {
+    text-align: center;
+}
+.table-heading {
+    display: inline-block;
+}
+.wp-container-core-columns-is-layout-1 {
+    flex-wrap: wrap;
+}
+body .is-layout-flex {
+    display: block;
 }
 
 #wpadminbar {
@@ -723,20 +885,3 @@ footer {
     will-change: transform;
 }
 
-.admin-bar .site-header {
-    transition: top 0.3s ease-in-out;
-}
-
-.admin-bar .site-header.fixed {
-    top: 0;
-}
-
-@media screen and (max-width: 782px) {
-    #wpadminbar {
-        position: fixed !important;
-    }
-    
-    .admin-bar .site-header {
-        top: 0;
-    }
-}
