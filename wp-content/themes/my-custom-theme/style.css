@@ -128,16 +128,25 @@ body {
     border: none;
     color: rgb(24, 18, 104);
     background-color: var(--primary-background);
-    padding: 5px;
-    box-sizing: border-box;
-    width: 60px; /* from 160px */
+    width: 120px; 
     font-size: 16px;
     text-align: right;
 }
+
 .formatted-input:focus {
-outline: none;
-border: none;
-box-shadow: none;
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.formatted-input-invest {
+    width: 60px; /* from 120px */
+}
+
+.prognose-table {
+    width: 100%;
+    padding: 20px 20px 20px 20px;
+    color: var(--primary-color);
 }
 
 @media screen and (max-width: 600px) {
@@ -255,9 +264,10 @@ box-shadow: none;
 /* Content Styles */
 .site-content {
     width: 100%;
+    height: 100%; 
     min-height: 100vh; /* Ensure it takes full height */
     box-sizing: border-box;
-    padding-top: 47px;
+    padding-top: 60px;
     background-image: url(/wp-content/themes/my-custom-theme/images/Background_Silverline.png);
     background-size: cover;
     z-index: 0; /* Ensure it appears below the header */
@@ -270,7 +280,7 @@ box-shadow: none;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding-top: 47px;
+    padding-top: 60px;
     background-color: rgba(255, 255, 255, 0.8); /* Light overlay for better readability */
     z-index: -1; /* Place it behind the content */
     top: 0; /* Align with the content */
@@ -525,14 +535,15 @@ article {
 /* Workflow - Container */
 .workflow-container-background {
     display: flex;
-    padding-top: 50px;
+    padding-top: 60px;
+    padding-bottom: 55px;
     background-image: url(/wp-content/themes/my-custom-theme/images/Background_Silverline.png);
     background-size: cover;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
-    height: 100%;
     position: fixed;
+    min-height: calc(100vh - 115px);
 }
 
 /* Add a semi-transparent overlay */
@@ -617,6 +628,7 @@ article {
 
 .workflow-form input {
     display: block;
+    font-size: 16px;
     margin-bottom: 10px;
     padding: 10px;
     width: 100%;
@@ -671,7 +683,7 @@ button:hover {
     font-size: 20px;
     font-weight: bold;
     text-align: left;
-    margin: 30px 20px 20px 20px;
+    padding-left: 20px;
     color: var(--primary-color);
 }
 
@@ -844,7 +856,7 @@ footer::before {
 .summary-row {
     display: flex;
     justify-content: space-between;
-    margin: 20px 20px 5px 20px;
+    margin: 0px 20px 5px 20px;
 }
 
 .summary-item h2 {
@@ -865,7 +877,7 @@ footer::before {
 }
 
 .total-value {
-    padding: 0 20px;
+    padding: 0 30px;
 }
 .total-cell {
     text-align: center;

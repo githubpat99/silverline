@@ -30,11 +30,12 @@ get_header();
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 50px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-top: 60px;
+    padding-bottom: 55px;
+    padding-right: 20px;
+    padding-left: 20px; /* Reduced padding for a more compact look */
     text-align: center;
-    min-height: calc(100vh - 100px); /* Adjusted height to account for reduced padding */
+    min-height: calc(100vh - 115px); /* Adjusted height to account for reduced padding */
     background-image: url('<?php echo get_template_directory_uri(); ?>/images/Background_Silverline.png');
     background-size: cover; /* Ensure the background covers the entire container */
     position: relative; /* For overlay positioning */
@@ -57,7 +58,6 @@ get_header();
     position: relative; /* Ensure content is above the overlay */
     z-index: 1;
     max-width: 800px;
-    padding: 30px;
     border-radius: 12px;
     animation: fadeIn 1.5s ease-in-out;
 }
@@ -116,9 +116,6 @@ get_header();
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .landing-content {
-        padding: 10px;
-    }
 
     .landing-title {
         font-size: 20px;

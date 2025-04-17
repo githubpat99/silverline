@@ -102,7 +102,7 @@ $liquiditaet = isset($values['liquiditaet']) ? $values['liquiditaet'] : 0;
                 
                 <?php if (is_user_logged_in()) : ?>
                     <!-- Show buttons with links for logged-in users -->
-                    <a href="<?php echo esc_url(get_theme_mod('bottom_nav_link', '/invest')); ?>" class="nav-button">
+                    <a href="<?php echo esc_url(get_theme_mod('bottom_nav_link', '/tragbarkeit')); ?>" class="nav-button">
                         <?php echo get_theme_mod('bottom_nav_button_text', 'Tragbarkeit'); ?>
                     </a>
                     <a href="<?php echo esc_url(get_theme_mod('bottom_nav_link', '/invest')); ?>" class="nav-button">

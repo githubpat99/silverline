@@ -51,37 +51,39 @@ $sparquote = $values['spar_quote']; // Monthly savings amount
 <div class="site-content">
     <div class="summary-container">
 
-        <table class="has-fixed-layout">
+        <table class="prognose-table">
             <p class="summary-title">Prognose</p>
             <tbody>
                 <tr>
-                    <td><span class="table-heading">Liquidität</span></td>
-                    <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['liquiditaet']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
+                    <td><span>Liquidität</span></td>
+                    <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['liquiditaet']); ?>" class="formatted-input formatted-input-invest" data-group="kurzfristig" maxlength="11" readonly></td>
                 </tr>
                 <tr>
-                    <td><span class="table-heading">Depot</span></td>
-                    <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['depot']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
+                    <td><span>Depot</span></td>
+                    <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['depot']); ?>" class="formatted-input formatted-input-invest" data-group="kurzfristig" maxlength="11" readonly></td>
                 </tr>
                 <tr>
-                    <td><span class="table-heading">Liquiditätsquote</span></td>
-                    <td><input type="text" placeholder="Wert 1" value="<?php echo esc_attr($values['liq_quote']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
+                    <td><span>Liquiditätsquote</span></td>
+                    <td><input type="text" placeholder="Wert 1" value="<?php echo esc_attr($values['liq_quote']); ?>" class="formatted-input formatted-input-invest" data-group="kurzfristig" maxlength="11" readonly></td>
                 </tr>
                 <tr>
-                    <td><span class="table-heading">verfügbare Liquidität</span></td>
-                    <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($vfLiq); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
+                    <td><span>verfügbare Liquidität</span></td>
+                    <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($vfLiq); ?>" class="formatted-input formatted-input-invest" data-group="kurzfristig" maxlength="11" readonly></td>
                 </tr>
                 <tr>
-                    <td><span class="table-heading">Sparquote / Monat</span></td>
-                    <td><input type="text" placeholder="Wert 3" value="<?php echo esc_attr($values['spar_quote']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
+                    <td><span>Sparquote pro Monat</span></td>
+                    <td><input type="text" placeholder="Wert 3" value="<?php echo esc_attr($values['spar_quote']); ?>" class="formatted-input formatted-input-invest" data-group="kurzfristig" maxlength="11" readonly></td>
+                </tr>
+                <tr><td colspan="2"><hr></td></tr>
                 </tr>
                 <tr>
                     <td>
                         <div class="slider-row">
-                            <span class="table-heading">Risikoquote</span>
+                            <span>Risikoquote</span>
                             <input type="range" id="riskSlider" min="0" max="100" step="5" value="<?php echo esc_attr($values['risk_quote']); ?>" class="risk-slider">
                         </div>
                     </td>
-                    <td><input type="text" id="riskValue" value="<?php echo esc_attr($values['risk_quote']); ?>%" class="formatted-input" readonly></td>
+                    <td><input type="text" id="riskValue" value="<?php echo esc_attr($values['risk_quote']); ?>%" class="formatted-input formatted-input-invest" readonly></td>
                 </tr>
                 
             </tbody>
@@ -333,8 +335,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var avgMonthlyGrowthRate = (averageRiskQuote / 100) / 12;
     var avgBalance = parseFloat(availableLiquidity);
 
-    console.log('Initial Balance:', balance, 'Savings Rate:', savingsRate, 'Monthly Growth Rate:', monthlyGrowthRate);
-
     for (var month = 0; month <= months; month++) {
         userData.push([month / 12, Math.round(balance)]);
         averageData.push([month / 12, Math.round(avgBalance)]);
@@ -343,8 +343,7 @@ document.addEventListener('DOMContentLoaded', function() {
         balance = (balance + savingsRate) + (balance * monthlyGrowthRate);
         avgBalance = (avgBalance + savingsRate) + (avgBalance * avgMonthlyGrowthRate);
 
-        console.log('Balance:', balance, 'Savings Rate:', savingsRate, 'Monthly Growth Rate:', monthlyGrowthRate);
-    }
+   }
 
     // Update the final values
     updateFinalValues(userData, averageData);

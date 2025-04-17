@@ -189,30 +189,10 @@ $values = array_merge($default_values, $stored_values ? $stored_values : array()
         margin: 0; /* Remove default margin */
         padding: 5px 0; /* Add padding to reduce space */
     }
-    .wp-block-heading span {
-        margin-left: 0px;
-    }
-    
-    
 
-    .back-button {
-        padding: 10px 15px;
-        font-size: 16px;
-        cursor: pointer;
-    }
-
-    /* Responsive design */
-    @media (max-width: 768px) {
-        .wp-block-column {
-            width: 100%;
-        }
-        .formatted-input {
-            max-width: 100px; /* Adjust the width for mobile devices */
-        }
-    }
 </style>
 
-<!-- <script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
     const inputs = document.querySelectorAll('.formatted-input');
 
@@ -223,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-</script> -->
+</script>
 
 <?php
 get_footer();
