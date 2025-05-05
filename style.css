@@ -1,0 +1,945 @@
+/* Ensure Font Awesome is loaded */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+/* Define color variables for easy updates */
+:root {
+    --primary-color: #0073aa;
+    --hover-color: #005177;
+    --text-color: #696969;
+    --border-color: #ccc;
+    --activa-color: rgba(0, 128, 0, 1); /* Green */
+    --passiva-color: rgba(200, 0, 0, 1); /* Red */
+    /*
+    --primary-background: #d1f3ce; */
+    --primary-background: linear-gradient(180deg, #f8f9fa, #e9ecef);  /* Sehr dezentes Grau */
+    --activa-background: linear-gradient(135deg, #e9f7ef, #d4edda); /* Sehr sanftes Grün */
+    --passiva-background: linear-gradient(135deg, #fcebea, #f8d7da); /* Sanftes Rot */
+    --primary-color-transparent: rgba(0, 115, 170, 0.8); /* Transparent version */
+    --text-color-transparent: rgba(105, 105, 105, 0.8); /* Transparent text color */
+    --transparent-background: rgba(0, 115, 170, 0); /* Transparent background */
+}
+
+h3,
+h4,
+.menu {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: large;
+    font-weight: 400;
+    padding-left: 10px;
+}
+
+h5 {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: medium;
+    font-weight: 300;
+    padding-left: 10px;
+}
+
+h6 {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: small;
+    font-weight: 200;
+}
+
+a {
+    color: #073979;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #f8f9fa, #e9ecef); /* Sehr dezentes Grau */
+    color: #696969; /* Adjusted text color for better contrast */
+}
+
+
+/* Header Styles */
+.site-header {
+    /* background-color: var(--primary-color); */
+    background-image: url(/wp-content/themes/my-custom-theme/images/Background_Silverline.png);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    padding: 10px 20px;
+}
+
+/* Add a semi-transparent overlay */
+.site-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color-transparent); /* Transparent primary color */
+    z-index: 0; /* Place it behind the content */
+}
+
+/* Admin bar adjustments */
+.admin-bar .site-header {
+    top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+    .admin-bar .site-header {
+        top: 46px;
+    }
+    
+    .chart-container {
+        padding: 10px;
+        margin: 10px auto;
+        min-height: 250px;
+    }
+    
+    .form-tables {
+        flex-direction: column;
+    }
+    
+    .form-table {
+        width: 100%;
+    }
+    
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .form-group label {
+        margin-bottom: 5px;
+    }
+    
+    .form-group input[type="text"] {
+        width: 100%;
+    }
+}
+
+.formatted-input {
+    border: none;
+    color: rgb(24, 18, 104);
+    background-color: var(--primary-background);
+    width: 120px; 
+    font-size: 16px;
+    text-align: right;
+}
+
+.formatted-input:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.formatted-input-invest {
+    width: 60px; /* from 120px */
+}
+
+.prognose-table {
+    width: 100%;
+    padding: 20px 20px 20px 20px;
+    color: var(--primary-color);
+}
+
+@media screen and (max-width: 600px) {
+    .admin-bar .site-header {
+        top: 0;
+        position: fixed;
+    }
+    
+    .chart-container {
+        min-height: 200px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .chart-container {
+        min-height: 180px;
+    }
+
+}
+
+.site-title {
+    font-size: 2rem;
+    margin: 0;
+    line-height: 1;
+    z-index: 1;
+}
+
+.site-title a {
+    text-decoration: none;
+    color: white;
+}
+
+.site-description {
+    margin-top: 0;
+    color: white;
+    z-index: 1;
+}
+
+/* Menu Toggle Button */
+.menu-toggle {
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    background-color: var(--primary-color-transparent); /* Transparent primary color */
+}
+
+/* Menu Button Lines */
+.menu-toggle span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: white;
+    z-index: 1;
+}
+
+/********** Navigation Menu **********/
+/* Ensure the nav menu is hidden by default */
+/* Default menu state */
+.nav-menu {
+    position: fixed;
+    top: 30px;
+    right: -250px; /* Hidden off-screen */
+    width: 250px;
+    background: var(--primary-color-transparent); /* Transparent primary color */
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  /* When menu is active */
+  .nav-menu.active {
+    transform: translateX(0); /* Bring it into view */
+    opacity: 1;
+    visibility: visible;
+    right: 0;
+  }
+  
+  /* When the <ul> inside the menu is active */
+  .nav-menu ul.active {
+    display: block;  /* Ensure <ul> is shown */
+    opacity: 1;
+  }
+  
+  /* For better styling */
+  .nav-menu ul {
+    list-style: none;
+    margin: 0;
+    display: none; /* Hide initially */
+  }
+  
+  .nav-menu li {
+    padding: 15px 0;
+  }
+  
+  .nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+/********** Enf of Navigation Menu *** Fullscreen***/
+
+
+/* Content Styles */
+.site-content {
+    width: 100%;
+    height: 100%; 
+    min-height: 100vh; /* Ensure it takes full height */
+    box-sizing: border-box;
+    padding-top: 60px;
+    background-image: url(/wp-content/themes/my-custom-theme/images/Background_Silverline.png);
+    background-size: cover;
+    z-index: 0; /* Ensure it appears below the header */
+    position: relative; /* For absolute positioning of the overlay */
+}
+
+.site-content::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 60px;
+    background-color: rgba(255, 255, 255, 0.8); /* Light overlay for better readability */
+    z-index: -1; /* Place it behind the content */
+    top: 0; /* Align with the content */
+}
+
+
+article {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 280px;
+    float: left;
+    list-style: none;
+    margin-top: 2em;
+    font-size: 14px;
+}
+
+.widgettitle {
+    border-top: 2px solid;
+    border-bottom: 1px solid #ccc;
+    padding: .25rem 0;
+    font-size: 1.25rem;
+}
+
+/* Form Styles */
+.form-tables {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Fixed space between form tables */
+}
+
+.form-table {
+    width: calc(50% - 20px); /* Adjust width to account for gap */
+    background-color: #f4f4f4;
+}
+
+.form-table.th-activa {
+    border: 2px solid green; /* Green border for Aktiva table */
+    border-radius: 6px;
+}
+
+.form-table.th-passiva {
+    border: 2px solid red; /* Red border for Passiva table */
+    border-radius: 6px;
+}
+
+.form-table th {
+    text-align: left;
+    padding: 10px;
+}
+
+.form-table td {
+    width: 100%;
+    padding-left: 2px;
+    border: none;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: .5rem;
+    width: 100%;
+}
+
+.form-group label {
+    padding-left: 5px;
+    font-weight: bold;
+    width: 150px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    flex: 1;
+    padding: .5rem;
+    font-size: 18px;
+    text-align: right;
+    background-color: white;
+    border: none;
+}
+
+.site-content form button {
+    padding: 1rem 1.5rem; /* Increase padding for bigger button */
+    margin: 10px;
+    font-size: 1.2rem; /* Increase text size */
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 6px; /* Slightly larger rounded corners */
+    cursor: pointer;
+    min-width: 150px; /* Ensure a reasonable minimum width */
+}
+
+.site-content form button:hover {
+    background-color: var(--hover-color);
+}
+
+@media (max-width: 768px) {
+    .form-tables {
+        flex-direction: column; /* Stack tables vertically on small screens */
+    }
+
+    .form-table {
+        width: 100%; /* Full width for each table on small screens */
+    }
+
+    .form-group {
+        flex-direction: column; /* Stack label and input vertically */
+        align-items: flex-start;
+    }
+
+    .form-group label {
+        width: 100%; /* Full width for label */
+        margin-bottom: .5rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"] {
+        width: 90%; /* Full width for input */
+        margin-right: 0;
+    }
+}
+
+.result-item {
+    text-align: center;
+    padding: 15px 25px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    min-width: 200px;
+}
+
+.result-key {
+    display: block;
+    color: #2c3e50;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.result-value {
+    display: block;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.result-value.passiv {
+    display: block;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.result-message {
+    width: 100%;
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 16px;
+    padding-top: 47px;
+    margin-bottom: 20px;
+}
+
+.activa-background .summary-title {
+    text-align: center;
+    font-weight: bold;
+    color: var(--activa-color);
+}
+
+.passiva-background .summary-title {
+    text-align: center;
+    font-weight: bold;
+    color: var(--passiva-color);
+}
+
+.landing-title {
+    padding-top: 0px; /*47px;*/
+    color: var(--primary-color);
+}
+.result-table {
+    width: 100%;
+    padding-top: 24px;
+    max-width: 800px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    z-index: 1; /* Ensure it appears above the footer */
+}
+
+.result-table td:first-child {
+    width: 40%;
+}
+
+.result-table td:last-child {
+    width: 60%;
+}
+
+.result-label {
+    display: inline-block;
+    padding: 0px 20px 0px 20px;
+    width: 100%;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.back-button {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #1a2530;
+}
+
+.chart-container {
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 782px) {
+    .chart-container {
+        height: 250px;
+        margin: 20px auto;
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .chart-container {
+        height: 200px;
+        margin: 15px auto;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .chart-container {
+        padding: 0;
+    }
+}
+
+/* Workflow - Container */
+.workflow-container-background {
+    display: flex;
+    padding-top: 60px;
+    padding-bottom: 55px;
+    background-image: url(/wp-content/themes/my-custom-theme/images/Background_Silverline.png);
+    background-size: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    position: fixed;
+    min-height: calc(100vh - 115px);
+}
+
+/* Add a semi-transparent overlay */
+.workflow-container-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Light overlay for better readability */
+    z-index: 0; /* Place it behind the content */
+}
+
+.workflow-container {
+    display: flex;
+    z-index: 1; /* Ensure it appears above the footer */
+}
+
+.workflow-navigation ul {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.workflow-navigation li {
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.workflow-navigation a {
+    text-decoration: none;
+    color: #333;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.workflow-navigation a:hover {
+    background-color: #f0f0f0;
+}
+
+.workflow-navigation .step-number {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: var(--primary-color-transparent);
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.workflow-navigation .active a {
+    background-color: var(--primary-color-transparent);
+    color: white;
+}
+
+.workflow-navigation .active .step-number {
+    background-color: #0073aa;
+}
+
+.drop-down {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.drop-down option {
+    font-size: 18px; /* Adjust the font size as needed */
+}
+
+.workflow-form {
+    flex-grow: 1;
+    padding: 20px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.workflow-form input {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    max-width: 120px;
+    box-sizing: border-box;
+}
+
+
+button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    color: white;
+    background-color: var(--primary-color-transparent); /* Transparent primary color */
+}
+
+button:hover {
+    background-color: #013147;
+}
+
+/* Balance - Sheet (Aktiva and Passiva) */
+.summary-item-aktiven {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    color: var(--activa-color);
+    border-radius: 5px;
+}
+.summary-item-passiven {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    color: var(--passiva-color);
+    border-radius: 5px;
+}
+
+.activa-background .wp-block-heading {
+    color: var(--activa-color);
+}
+.activa-background .table-heading {
+    color: var(--activa-color);
+}
+.passiva-background .wp-block-heading {
+    color: var(--passiva-color);
+}
+.passiva-background .table-heading {
+    color: var(--passiva-color);
+}
+
+.summary-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 20px;
+    color: var(--primary-color);
+}
+
+.nav-button-hidden {
+    display: inline-block;
+    background-color: var(--primary-color-transparent); /* Transparent primary color */
+    color: light-gray;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.nav-button {
+    display: inline-block;
+    background-color: var(--primary-color-transparent); /* Transparent primary color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: #1a2530;
+}
+
+/* Sparziel Styles ----------------------------------------------------- */
+
+.input-button-group {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+    max-width: 100%;
+  }
+  
+  .input-button-group input[type="text"], 
+  .input-button-group input[type="number"] {
+    flex: 1;
+    max-width: 90px;
+    padding: 0.3em;
+    border: none;
+    background-color: var(--primary-background);
+    text-align: right;
+}
+  
+  .input-button-group button {
+    color: white;
+    background-color: var(--primary-color-transparent); /* Transparent primary color */
+    border: none;
+    border-radius: 4px;
+  }
+  .input-button-group button:hover {
+    background-color: var(--primary-color);
+  }
+
+  .graph-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .button-Count {
+    padding: 5px;
+}
+  
+  
+  
+  /* Footer Styles --------------------------------------------------- */
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%; /* Ensures the footer takes the full width */
+    background-image: url(/wp-content/themes/my-custom-theme/images/Background_Silverline.png);    
+    color: white;
+    text-align: center;
+}
+
+/* Add a semi-transparent overlay */
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color-transparent); /* Transparent primary color */
+    z-index: 0; /* Place it behind the content */
+}
+
+.progress-container {
+    width: 100%;
+    position: relative;
+}
+
+.progress-bar {
+    height: 5px;
+    background: var(--border-color);
+    width: 0%;
+    transition: width 0.3s ease-in-out;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10%;
+}
+
+.step {
+    width: 30px;
+    height: 30px;
+    color: #333;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+}
+
+.step.active {
+    color: #fff;
+}
+
+.step:hover {
+    background: #005580;
+    color: #fff;
+}
+
+/* Footer Step Icons Styles */
+.steps .step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.steps .step i {
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.steps .step:hover {
+    color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.steps .step:hover i {
+    transform: scale(1.1);
+}
+    
+.aktiva-section h2 {
+    color: var(--activa-color);
+    font-size: 24px;
+    margin-bottom: 20px;
+} 
+
+.passiva-section h2 {
+    color: var(--passiva-color);
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.value-display {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--activa-color);
+    padding: 15px;
+    margin: auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.value-display:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.passiva-section .value-display {
+    color: var(--passiva-color);
+}
+
+.nav-section {
+    border-radius: 10px;
+    padding: 10px 0; /* Remove horizontal padding */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    width: 90%;
+    margin: 0 auto; /* Center horizontally */
+}
+
+.balance-sheet {
+    width: 90%;
+    margin: 0 auto; /* Center horizontally */
+    padding: 10px 0; /* Remove horizontal padding */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 20px 5px 20px;
+}
+
+.summary-item h2 {
+    margin: 0;
+}
+
+.custom-separator {
+    flex-basis: 100%; /* Ensure it spans the full width */
+    background-color: var(--primary-color); /* Use a solid color */
+    margin: 10px 10px 10px 10px; /* Add spacing */
+}
+
+.wp-block-columns {
+    align-items: normal !important;
+    box-sizing: border-box;
+    padding: 0px 10px 20px 10px;
+    display: block; /* Ensure it behaves like a block element */
+}
+
+.total-value {
+    padding: 0 30px;
+}
+.total-cell {
+    text-align: center;
+}
+.table-heading {
+    white-space: nowrap;
+    display: inline-block;
+    font-weight: 600;
+  }
+  
+.wp-container-core-columns-is-layout-1 {
+    flex-wrap: wrap;
+}
+body .is-layout-flex {
+    display: block;
+}
+
+#wpadminbar {
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+}
+
