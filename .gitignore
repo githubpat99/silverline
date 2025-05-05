@@ -1,0 +1,15 @@
+# Ignoriere WordPress-Core-Dateien (dies ist nun nicht mehr erforderlich, da du nur das Theme versionierst)
+wp-content/plugins/
+wp-content/uploads/
+wp-content/cache/
+wp-content/languages/
+
+# Ignoriere alles, was mit lokalen Entwicklungsdateien zu tun hat
+*.log
+*.tmp
+node_modules/
+.env
+
+# IDE-spezifische Dateien (z.B. VSCode, Sublime)
+.vscode/
+.idea/
