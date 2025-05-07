@@ -10,6 +10,9 @@ wp-content/languages/
 node_modules/
 .env
 
-# IDE-spezifische Dateien (z.B. VSCode, Sublime)
+# VS Code spezifische Dateien
 .vscode/
-.idea/
+
+# Betriebssystem-spezifische Dateien
+.DS_Store
+Thumbs.db

@@ -49,40 +49,10 @@ $sparquote = $values['spar_quote']; // Monthly savings amount
 ?>
 
 <div class="site-content">
-    <div class="summary-container">
-
-        <table class="prognose-table">
-            <p class="summary-title">Tragbarkeit prüfen</p>
-            <tbody>
-                <tr>
-                    <td><span class="table-heading">Liquidität</span></td>
-                    <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['liquiditaet']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
-                </tr>
-                <tr>
-                    <td><span class="table-heading">Depot</span></td>
-                    <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($values['depot']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
-                </tr>
-                <tr>
-                    <td><span class="table-heading">Liquiditätsquote</span></td>
-                    <td><input type="text" placeholder="Wert 1" value="<?php echo esc_attr($values['liq_quote']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
-                </tr>
-                <tr>
-                    <td><span class="table-heading">verfügbare Liquidität</span></td>
-                    <td><input type="text" placeholder="Wert 2" value="<?php echo esc_attr($vfLiq); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
-                </tr>
-                <tr>
-                    <td><span class="table-heading">Sparquote / Monat</span></td>
-                    <td><input type="text" placeholder="Wert 3" value="<?php echo esc_attr($values['spar_quote']); ?>" class="formatted-input" data-group="kurzfristig" maxlength="11" readonly></td>
-                </tr>
-                <tr><td colspan="2"><hr></td></tr>
-                </tr>
-                <tr>
-                    <td><span class="table-heading">Diese Funktion steht nur Gold-Membern zur Verfügung - Sorry. <br><br>Irgendwie muss ich ja auch Geld verdienen. <br><br>  &#128540</span></td>
-                </tr>
-                
-            </tbody>
-        </table>
-    </div>
+    <p class="summary-title">Tragbarkeit prüfen</p>
+    <hr class="summary-separator">
+    <p class="summary-title">Diese Funktion steht leider ausschliesslich Gold-Membern zur Verfügung - Sorry. <br><br>Irgendwie muss ich ja auch Geld verdienen. <br><br>  &#128540;</p>
+    
 
 </div>
 

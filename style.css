@@ -753,6 +753,12 @@ button:hover {
     padding: 5px;
 }
   
+.summary-separator {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ccc, transparent);
+    margin: 2rem 0;
+}
   
   
   /* Footer Styles --------------------------------------------------- */
@@ -764,6 +770,7 @@ footer {
     background-image: url(/wp-content/themes/my-custom-theme/images/Background_Silverline.png);    
     color: white;
     text-align: center;
+    z-index: 999; /* Ensure it appears above other content */
 }
 
 /* Add a semi-transparent overlay */
